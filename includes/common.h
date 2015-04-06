@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Mon Apr  6 04:35:07 2015 chapui_s
-** Last update Mon Apr  6 18:03:37 2015 chapui_s
+** Last update Mon Apr  6 21:26:10 2015 chapui_s
 */
 
 #ifndef COMMON_H_
@@ -32,5 +32,8 @@
 
 int		derror(const char *);
 int		derrorn(const char *);
+int		read512_socket(int fd, char *buffer);
+int		write512_socket(int fd, char *buffer, size_t size);
+void		puts_telnet(const char *s);
 
 #endif /* !COMMON_H_ */

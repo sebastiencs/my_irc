@@ -5,12 +5,13 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Mon Apr  6 15:43:27 2015 chapui_s
-** Last update Mon Apr  6 18:18:41 2015 chapui_s
+** Last update Mon Apr  6 21:39:14 2015 chapui_s
 */
 
 #include "server.h"
 
-t_client		*find_client(t_client *root, fd_set *rfds,
+t_client		*find_client(t_client *root,
+				     fd_set *rfds,
 				     fd_set *wfds)
 {
   t_client		*tmp;
@@ -29,9 +30,18 @@ t_client		*find_client(t_client *root, fd_set *rfds,
 
 int			read_client(t_server *server, t_client *client)
 {
-  (void)server;
-  (void)client;
-  printf("READING CLIENT\n");
+  if (!read512_socket(client->fd, client->buffer_in))
+  {
+#ifdef DEBUG
+    fprintf(stdout, "--CLIENT DISCONNECT-- (fd: %d)\n", client->fd);
+#endif
+    pop_client(server->root_clients, client);
+    return (0);
+  }
+#ifdef DEBUG
+  puts_telnet(client->buffer_in);
+#endif
+  /* interprete_command(server, client); */
   return (0);
 }
 
@@ -43,7 +53,8 @@ int			write_client(t_server *server, t_client *client)
   return (0);
 }
 
-int			manage_client(t_server *server, fd_set *rfds,
+int			manage_client(t_server *server,
+				      fd_set *rfds,
 				      fd_set *wfds)
 {
   t_client		*client;
@@ -59,7 +70,8 @@ int			manage_client(t_server *server, fd_set *rfds,
   return (0);
 }
 
-int			post_select(t_server *server, fd_set *rfds,
+int			post_select(t_server *server,
+				    fd_set *rfds,
 				    fd_set *wfds)
 {
   if (FD_ISSET(server->fd, rfds))

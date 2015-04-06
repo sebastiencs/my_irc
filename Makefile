@@ -21,7 +21,10 @@ SRC_SERVER	= $(DIR_SERVER)/server.c		\
 
 SRC_CLIENT	= $(DIR_CLIENT)/client.c
 
-SRC_COMMON	= $(DIR_COMMON)/derror.c
+SRC_COMMON	= $(DIR_COMMON)/derror.c		\
+		  $(DIR_COMMON)/puts_telnet.c		\
+		  $(DIR_COMMON)/read512_socket.c	\
+		  $(DIR_COMMON)/write512_socket.c
 
 OBJ_SERVER	= $(SRC_SERVER:.c=.o)
 
