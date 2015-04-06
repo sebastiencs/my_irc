@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Mon Apr  6 04:36:38 2015 chapui_s
-** Last update Mon Apr  6 17:30:53 2015 chapui_s
+** Last update Mon Apr  6 17:57:20 2015 chapui_s
 */
 
 #ifndef SERVER_H_
@@ -15,7 +15,6 @@
 
 # define DEFAULT_PORT	(6667)
 # define CLIENTS_MAX	(1024)
-# define BUFFER_SIZE	(1024)
 # define ADDR_LOCAL_IP	("8.8.8.8")
 # define PORT_LOCAL_IP	(53)
 
