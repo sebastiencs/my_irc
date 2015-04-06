@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Mon Apr  6 15:43:27 2015 chapui_s
-** Last update Mon Apr  6 21:50:43 2015 chapui_s
+** Last update Mon Apr  6 21:59:43 2015 chapui_s
 */
 
 #include "server.h"
@@ -36,12 +36,14 @@ int			read_client(t_server *server, t_client *client)
     fprintf(stdout, "--CLIENT DISCONNECT-- (fd: %d)\n", client->fd);
 #endif
     pop_client(server->root_clients, client);
-    return (0);
   }
+  else
+  {
 #ifdef DEBUG
-  puts_telnet(client->buffer_in);
+    puts_telnet(client->buffer_in);
 #endif
-  interpret_command(server, client);
+    interpret_command(server, client);
+  }
   return (0);
 }
 

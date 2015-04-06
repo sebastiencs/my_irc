@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Mon Apr  6 04:36:38 2015 chapui_s
-** Last update Mon Apr  6 21:50:30 2015 chapui_s
+** Last update Mon Apr  6 21:58:40 2015 chapui_s
 */
 
 #ifndef SERVER_H_
@@ -17,6 +17,7 @@
 # define CLIENTS_MAX	(1024)
 # define ADDR_LOCAL_IP	("8.8.8.8")
 # define PORT_LOCAL_IP	(53)
+# define LIMIT_WRONG	(10)
 
 typedef enum		e_action
 {
@@ -32,6 +33,7 @@ typedef struct		s_client
   char			*nick;
   char			*user;
   char			*chanel;
+  int			nb_wrong_cmd;
   t_action		action;
   t_buffer		buffer_out[BUFFER_SIZE];
   t_buffer		buffer_in[BUFFER_SIZE];
