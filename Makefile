@@ -24,6 +24,7 @@ SRC_CLIENT	= $(DIR_CLIENT)/client.c
 
 SRC_COMMON	= $(DIR_COMMON)/derror.c		\
 		  $(DIR_COMMON)/puts_telnet.c		\
+		  $(DIR_COMMON)/my_str_to_wordtab.c	\
 		  $(DIR_COMMON)/read512_socket.c	\
 		  $(DIR_COMMON)/write512_socket.c
 
