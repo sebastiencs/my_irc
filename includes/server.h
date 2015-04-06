@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Mon Apr  6 04:36:38 2015 chapui_s
-** Last update Mon Apr  6 17:57:20 2015 chapui_s
+** Last update Mon Apr  6 21:50:30 2015 chapui_s
 */
 
 #ifndef SERVER_H_
@@ -48,6 +48,13 @@ typedef struct		s_server
   t_client		*root_clients;
 }			t_server;
 
+typedef struct		s_cmd
+{
+  char			*name;
+  int			(*fct)(t_server *server, t_client *client);
+  int			need_registered;
+}			t_cmd;
+
 int		get_port(t_server *server, int argc, char **argv);
 int		create_server(t_server *server);
 int		push_client(t_client *root, int fd);
@@ -58,5 +65,6 @@ int		loop_server(t_server *server);
 int		init_select(t_server *server, fd_set *rfds,
 			    fd_set *wfds, fd_set *efds);
 void		add_client(t_server *server);
+int		interpret_command(t_server *server, t_client *client);
 
 #endif /* !SERVER_H_ */

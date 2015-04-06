@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Mon Apr  6 15:43:27 2015 chapui_s
-** Last update Mon Apr  6 21:39:14 2015 chapui_s
+** Last update Mon Apr  6 21:50:43 2015 chapui_s
 */
 
 #include "server.h"
@@ -41,7 +41,7 @@ int			read_client(t_server *server, t_client *client)
 #ifdef DEBUG
   puts_telnet(client->buffer_in);
 #endif
-  /* interprete_command(server, client); */
+  interpret_command(server, client);
   return (0);
 }
 
