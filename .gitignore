@@ -1,0 +1,12 @@
+client
+server
+*.a
+*.tgz
+*.o
+*.so
+\#*\#
+.\#*
+*.sw[po]
+~*
+*~
+a.out
