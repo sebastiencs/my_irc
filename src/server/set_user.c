@@ -5,10 +5,20 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Tue Apr  7 04:39:01 2015 chapui_s
-** Last update Tue Apr  7 15:35:07 2015 chapui_s
+** Last update Tue Apr  7 17:46:18 2015 chapui_s
 */
 
 #include "server.h"
+
+void		set_registered(t_client *client)
+{
+  reply(client, 001, client->nick, "Welcome !");
+  client->registered = 1;
+#ifdef DEBUG
+  fprintf(stdout, "--SET USER--(fd %d user %s)\n", client->fd, client->user);
+  fprintf(stdout, "--SET REAL NAME-- %s\n", client->real_name);
+#endif
+}
 
 int		set_user(t_server *server __attribute__ ((unused)),
 			 t_client *client)
@@ -31,11 +41,7 @@ int		set_user(t_server *server __attribute__ ((unused)),
     {
       client->real_name = strdup(real_name + 1);
     }
-    client->registered = 1;
-#ifdef DEBUG
-    fprintf(stdout, "--SET USER--(fd %d user %s)\n", client->fd, client->user);
-    fprintf(stdout, "--SET REAL NAME-- %s\n", client->real_name);
-#endif
+    set_registered(client);
   }
   return (0);
 }

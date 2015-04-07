@@ -5,13 +5,14 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Tue Apr  7 01:41:12 2015 chapui_s
-** Last update Tue Apr  7 16:40:08 2015 chapui_s
+** Last update Tue Apr  7 18:31:59 2015 chapui_s
 */
 
 #include "server.h"
 
 t_reply		tab_reply[] =
 {
+  { 001, "001 %s :%s\r\n" },
   { 401, "401 %s :No such nick/channel\r\n" },
   { 402, "402 %s :No such server\r\n" },
   { 403, "403 %s :No such channel\r\n" },
@@ -58,6 +59,7 @@ t_reply		tab_reply[] =
   { 502, "502 :Cant change mode for other users\r\n" },
   { 321, "321 Channel :Users Name\r\n" },
   { 322, "322 #%s %d\r\n" },
+  { 700, ":%s PRIVMSG %s :%s\r\n" },
   { 323, "323 :End of /LIST\r\n" },
   { 0, (char*)0 }
 };

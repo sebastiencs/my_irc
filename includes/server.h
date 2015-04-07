@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Mon Apr  6 04:36:38 2015 chapui_s
-** Last update Tue Apr  7 17:20:34 2015 chapui_s
+** Last update Tue Apr  7 18:53:53 2015 chapui_s
 */
 
 #ifndef SERVER_H_
@@ -32,6 +32,8 @@
 # define RPL_LISTEND		(323)
 # define ERR_TOOMANYCHANNELS	(405)
 # define ERR_NOTONCHANNEL	(442)
+# define ERR_NORECIPIENT	(411)
+# define ERR_NOSUCHNICK		(401)
 
 typedef enum		e_action
 {
@@ -115,5 +117,6 @@ int		join_chan(t_server *server, t_client *client);
 int		part_chan(t_server *server, t_client *client);
 void		push_buffer(t_list_buffer **list, t_buffer *buffer);
 void		get_buffer(t_list_buffer **list, t_buffer *buffer_out);
+int		priv_msg(t_server *server, t_client *client);
 
 #endif /* !SERVER_H_ */
