@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Mon Apr  6 15:43:27 2015 chapui_s
-** Last update Mon Apr  6 21:59:43 2015 chapui_s
+** Last update Tue Apr  7 03:24:23 2015 chapui_s
 */
 
 #include "server.h"
@@ -42,7 +42,12 @@ int			read_client(t_server *server, t_client *client)
 #ifdef DEBUG
     puts_telnet(client->buffer_in);
 #endif
-    interpret_command(server, client);
+    clean_telnet(client->buffer_in);
+    if ((client->tab_cmd = my_str_to_wordtab(client->buffer_in)))
+    {
+      interpret_command(server, client);
+      free_wordtab(&(client->tab_cmd));
+    }
   }
   return (0);
 }

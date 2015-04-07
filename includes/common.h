@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Mon Apr  6 04:35:07 2015 chapui_s
-** Last update Mon Apr  6 21:26:10 2015 chapui_s
+** Last update Tue Apr  7 03:26:21 2015 chapui_s
 */
 
 #ifndef COMMON_H_
@@ -27,6 +27,7 @@
 # include <signal.h>
 # include <sys/stat.h>
 # include <sys/mman.h>
+# include <stdarg.h>
 
 # define BUFFER_SIZE	(512 + 1)
 
@@ -35,5 +36,7 @@ int		derrorn(const char *);
 int		read512_socket(int fd, char *buffer);
 int		write512_socket(int fd, char *buffer, size_t size);
 void		puts_telnet(const char *s);
+char		**my_str_to_wordtab(char *s);
+void		free_wordtab(char ***wordtab);
 
 #endif /* !COMMON_H_ */

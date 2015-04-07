@@ -16,6 +16,9 @@ SRC_SERVER	= $(DIR_SERVER)/server.c		\
 		  $(DIR_SERVER)/list_clients.c		\
 		  $(DIR_SERVER)/loop_server.c		\
 		  $(DIR_SERVER)/add_client.c		\
+		  $(DIR_SERVER)/reply.c			\
+		  $(DIR_SERVER)/clean_telnet.c		\
+		  $(DIR_SERVER)/set_nickname.c		\
 		  $(DIR_SERVER)/init_select.c		\
 		  $(DIR_SERVER)/interpret_command.c	\
 		  $(DIR_SERVER)/get_port.c

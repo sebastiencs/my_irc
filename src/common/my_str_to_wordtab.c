@@ -5,10 +5,10 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Tue Apr  7 00:58:09 2015 chapui_s
-** Last update Tue Apr  7 00:58:54 2015 chapui_s
+** Last update Tue Apr  7 03:26:40 2015 chapui_s
 */
 
-#include "commmon.h"
+#include "common.h"
 
 static int	get_nb_word(char *s)
 {
@@ -85,4 +85,21 @@ char		**my_str_to_wordtab(char *s)
   }
   tab[nb_word] = (char*)0;
   return (tab);
+}
+
+void		free_wordtab(char ***wordtab)
+{
+  char		**tab;
+  size_t	i;
+
+  i = 0;
+  tab = *wordtab;
+  while (tab[i])
+  {
+    free(tab[i]);
+    i += 1;
+  }
+  free(tab[i]);
+  free(tab);
+  *wordtab = (char**)0;
 }
