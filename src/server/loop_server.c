@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Mon Apr  6 15:43:27 2015 chapui_s
-** Last update Tue Apr  7 14:48:28 2015 chapui_s
+** Last update Tue Apr  7 16:42:59 2015 chapui_s
 */
 
 #include "server.h"
@@ -52,11 +52,16 @@ int			read_client(t_server *server, t_client *client)
   return (0);
 }
 
-int			write_client(t_server *server, t_client *client)
+int			write_client(t_server *server __attribute__ ((unused)),
+				     t_client *client)
 {
-  (void)server;
-  (void)client;
-  printf("WRITING CLIENT\n");
+  get_buffer(&(client->list_buffer), client->buffer_out);
+  write512_socket(client->fd, client->buffer_out, strlen(client->buffer_out));
+  memset(client->buffer_out, 0, BUFFER_SIZE);
+  if (!client->list_buffer)
+  {
+    client->action = READ;
+  }
   return (0);
 }
 

@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Tue Apr  7 01:41:12 2015 chapui_s
-** Last update Tue Apr  7 15:27:41 2015 chapui_s
+** Last update Tue Apr  7 16:40:08 2015 chapui_s
 */
 
 #include "server.h"
@@ -62,11 +62,24 @@ t_reply		tab_reply[] =
   { 0, (char*)0 }
 };
 
+void		make_reply(t_client *client, int i, va_list *ap)
+{
+  char		*buffer;
+  /* va_list	ap; */
+
+  buffer = client->buffer_out;
+  memset(buffer, 0, BUFFER_SIZE);
+  /* va_start(ap, num); */
+  vsnprintf(buffer, 512, tab_reply[i].fmt, *ap);
+  /* va_end(ap); */
+  push_buffer(&(client->list_buffer), client->buffer_out);
+  client->action = WRITE;
+}
+
 int		reply(t_client *client, int num, ...)
 {
   va_list	ap;
   size_t	i;
-  char		*buffer;
 
   i = 0;
   while (tab_reply[i].num && tab_reply[i].num != num)
@@ -75,12 +88,9 @@ int		reply(t_client *client, int num, ...)
   }
   if (tab_reply[i].num)
   {
-    buffer = client->buffer_out;
-    memset(buffer, 0, BUFFER_SIZE);
     va_start(ap, num);
-    vsnprintf(buffer, 512, tab_reply[i].fmt, ap);
+    make_reply(client, i, &ap);
     va_end(ap);
-    write512_socket(client->fd, buffer, strlen(buffer));
   }
 #ifdef DEBUG
   else

@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Tue Apr  7 15:19:21 2015 chapui_s
-** Last update Tue Apr  7 15:51:54 2015 chapui_s
+** Last update Tue Apr  7 17:01:53 2015 chapui_s
 */
 
 #include "server.h"
@@ -30,6 +30,7 @@ static t_chan	*create_chan(char *name)
   {
     new->name = name;
     new->nb_users = 1;
+    new->next = (t_chan*)0;
   }
   return (new);
 }
@@ -50,7 +51,10 @@ static void	push_chan(t_chan **list, char *name)
       }
       tmp = tmp->next;
     }
-    tmp->next = create_chan(name);
+    if (tmp && !strcmp(tmp->name, name))
+      tmp->nb_users += 1;
+    else
+      tmp->next = create_chan(name);
   }
   else
   {
@@ -79,15 +83,21 @@ static t_chan	*get_list(t_client *root)
 int		list_chan(t_server *server, t_client *client)
 {
   t_chan	*channels;
+  t_chan	*save;
 
   channels = get_list(server->root_clients);
+  save = channels;
   reply(client, RPL_LISTSTART);
   while (channels)
   {
-    reply(client, RPL_LIST, channels->name, channels->nb_users);
+    if ((client->tab_cmd[1] && strstr(channels->name, client->tab_cmd[1]))
+	|| !client->tab_cmd[1])
+    {
+      reply(client, RPL_LIST, channels->name, channels->nb_users);
+    }
     channels = channels->next;
   }
   reply(client, RPL_LISTEND);
-  free_chan(channels);
+  free_chan(save);
   return (0);
 }

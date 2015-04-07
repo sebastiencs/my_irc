@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Mon Apr  6 04:36:38 2015 chapui_s
-** Last update Tue Apr  7 15:42:59 2015 chapui_s
+** Last update Tue Apr  7 16:47:49 2015 chapui_s
 */
 
 #ifndef SERVER_H_
@@ -30,6 +30,7 @@
 # define RPL_LISTSTART		(321)
 # define RPL_LIST		(322)
 # define RPL_LISTEND		(323)
+# define ERR_TOOMANYCHANNELS	(405)
 
 typedef enum		e_action
 {
@@ -38,6 +39,12 @@ typedef enum		e_action
 }			t_action;
 
 typedef char		t_buffer;
+
+typedef struct		s_list_buffer
+{
+  char			buffer[BUFFER_SIZE];
+  struct s_list_buffer	*next;
+}			t_list_buffer;
 
 typedef struct		s_client
 {
@@ -52,6 +59,7 @@ typedef struct		s_client
   char			**tab_cmd;
   t_buffer		buffer_out[BUFFER_SIZE];
   t_buffer		buffer_in[BUFFER_SIZE];
+  t_list_buffer		*list_buffer;
   struct s_client	*prev;
   struct s_client	*next;
 }			t_client;
@@ -102,5 +110,8 @@ void		clean_telnet(char *s);
 void		free_client(t_client *client);
 int		set_user(t_server *server, t_client *client);
 int		list_chan(t_server *server, t_client *client);
+int		join_chan(t_server *server, t_client *client);
+void		push_buffer(t_list_buffer **list, t_buffer *buffer);
+void		get_buffer(t_list_buffer **list, t_buffer *buffer_out);
 
 #endif /* !SERVER_H_ */

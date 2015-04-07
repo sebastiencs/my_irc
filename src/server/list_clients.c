@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Mon Apr  6 05:51:17 2015 chapui_s
-** Last update Tue Apr  7 03:46:58 2015 chapui_s
+** Last update Tue Apr  7 16:46:39 2015 chapui_s
 */
 
 #include "server.h"
@@ -97,7 +97,7 @@ void			free_list(t_client *root)
     while (tmp != root)
     {
       tmp2 = tmp->next;
-      free(tmp);
+      free_client(tmp);
       tmp = tmp2;
     }
     free(root);
