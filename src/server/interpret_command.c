@@ -5,14 +5,14 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Mon Apr  6 21:45:01 2015 chapui_s
-** Last update Tue Apr  7 03:04:46 2015 chapui_s
+** Last update Tue Apr  7 03:56:48 2015 chapui_s
 */
 
 #include "server.h"
 
 t_cmd		cmds[] =
 {
-  { "NICK ", set_nickname, 0 },
+  { "NICK", set_nickname, 0 },
   { (char*)0, (void*)0, 0 }
 };
 
@@ -36,6 +36,7 @@ int		interpret_command(t_server *server, t_client *client)
   }
   else
   {
+    reply(client, ERR_UNKNOWNCOMMAND, client->tab_cmd[0]);
     if (++(client->nb_wrong_cmd) >= LIMIT_WRONG)
     {
       pop_client(server->root_clients, client);

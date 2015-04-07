@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Mon Apr  6 05:51:17 2015 chapui_s
-** Last update Mon Apr  6 16:53:46 2015 chapui_s
+** Last update Tue Apr  7 03:46:58 2015 chapui_s
 */
 
 #include "server.h"
@@ -75,7 +75,7 @@ void			pop_client(t_client *root, t_client *client)
 #ifdef DEBUG
 	fprintf(stdout, "--CLIENT POP-- (fd: %d)\n", tmp->fd);
 #endif
-	free(tmp);
+	free_client(tmp);
 	return ;
       }
       tmp = tmp->next;

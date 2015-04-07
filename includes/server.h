@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Mon Apr  6 04:36:38 2015 chapui_s
-** Last update Tue Apr  7 03:10:58 2015 chapui_s
+** Last update Tue Apr  7 03:55:30 2015 chapui_s
 */
 
 #ifndef SERVER_H_
@@ -23,6 +23,7 @@
 # define ERR_NICKNAMEINUSE	(433)
 # define ERR_ERRONEUSNICKNAME	(432)
 # define ERR_NICKCOLLISION	(436)
+# define ERR_UNKNOWNCOMMAND	(421)
 
 typedef enum		e_action
 {
@@ -83,5 +84,6 @@ int		interpret_command(t_server *server, t_client *client);
 int		reply(t_client *client, int num, ...);
 int		set_nickname(t_server *server, t_client *client);
 void		clean_telnet(char *s);
+void		free_client(t_client *client);
 
 #endif /* !SERVER_H_ */
