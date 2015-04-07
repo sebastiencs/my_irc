@@ -16,6 +16,7 @@ SRC_SERVER	= $(DIR_SERVER)/server.c		\
 		  $(DIR_SERVER)/list_clients.c		\
 		  $(DIR_SERVER)/loop_server.c		\
 		  $(DIR_SERVER)/add_client.c		\
+		  $(DIR_SERVER)/set_user.c		\
 		  $(DIR_SERVER)/reply.c			\
 		  $(DIR_SERVER)/clean_telnet.c		\
 		  $(DIR_SERVER)/free_client.c		\
@@ -30,6 +31,7 @@ SRC_COMMON	= $(DIR_COMMON)/derror.c		\
 		  $(DIR_COMMON)/puts_telnet.c		\
 		  $(DIR_COMMON)/my_str_to_wordtab.c	\
 		  $(DIR_COMMON)/read512_socket.c	\
+		  $(DIR_COMMON)/count_tab.c		\
 		  $(DIR_COMMON)/write512_socket.c
 
 OBJ_SERVER	= $(SRC_SERVER:.c=.o)

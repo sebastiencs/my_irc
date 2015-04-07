@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Mon Apr  6 04:36:38 2015 chapui_s
-** Last update Tue Apr  7 03:55:30 2015 chapui_s
+** Last update Tue Apr  7 04:55:43 2015 chapui_s
 */
 
 #ifndef SERVER_H_
@@ -24,6 +24,8 @@
 # define ERR_ERRONEUSNICKNAME	(432)
 # define ERR_NICKCOLLISION	(436)
 # define ERR_UNKNOWNCOMMAND	(421)
+# define ERR_NEEDMOREPARAMS	(461)
+# define ERR_ALREADYREGISTRED	(462)
 
 typedef enum		e_action
 {
@@ -38,7 +40,9 @@ typedef struct		s_client
   int			fd;
   char			*nick;
   char			*user;
+  char			*real_name;
   char			*chanel;
+  int			registered;
   int			nb_wrong_cmd;
   t_action		action;
   char			**tab_cmd;
@@ -85,5 +89,6 @@ int		reply(t_client *client, int num, ...);
 int		set_nickname(t_server *server, t_client *client);
 void		clean_telnet(char *s);
 void		free_client(t_client *client);
+int		set_user(t_server *server, t_client *client);
 
 #endif /* !SERVER_H_ */
