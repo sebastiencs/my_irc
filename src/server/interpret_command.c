@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Mon Apr  6 21:45:01 2015 chapui_s
-** Last update Tue Apr  7 16:42:16 2015 chapui_s
+** Last update Tue Apr  7 17:07:15 2015 chapui_s
 */
 
 #include "server.h"
@@ -16,6 +16,7 @@ t_cmd		cmds[] =
   { "USER", set_user, 0 },
   { "LIST", list_chan, 1 },
   { "JOIN", join_chan, 1 },
+  { "PART", part_chan, 1 },
   { (char*)0, (void*)0, 0 }
 };
 

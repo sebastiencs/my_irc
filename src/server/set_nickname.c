@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Tue Apr  7 01:02:11 2015 chapui_s
-** Last update Tue Apr  7 03:42:54 2015 chapui_s
+** Last update Tue Apr  7 17:23:03 2015 chapui_s
 */
 
 #include "server.h"
@@ -28,7 +28,7 @@ int		is_already_used(t_client *root, char *nick)
 
 int		is_bad_caracters(char *s)
 {
-  char		good[] = "-[]\\`^{}";
+  char		good[] = "-[]\\`^{}_";
   size_t	i;
 
   i = 0;
