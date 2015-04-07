@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Tue Apr  7 01:41:12 2015 chapui_s
-** Last update Tue Apr  7 03:19:26 2015 chapui_s
+** Last update Tue Apr  7 15:27:41 2015 chapui_s
 */
 
 #include "server.h"
@@ -56,6 +56,9 @@ t_reply		tab_reply[] =
   { 491, "491 :No O-lines for your host\r\n" },
   { 501, "501 :Unknown MODE flag\r\n" },
   { 502, "502 :Cant change mode for other users\r\n" },
+  { 321, "321 Channel :Users Name\r\n" },
+  { 322, "322 #%s %d\r\n" },
+  { 323, "323 :End of /LIST\r\n" },
   { 0, (char*)0 }
 };
 

@@ -5,16 +5,22 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Mon Apr  6 02:26:45 2015 chapui_s
-** Last update Tue Apr  7 03:52:54 2015 chapui_s
+** Last update Tue Apr  7 14:09:36 2015 chapui_s
 */
 
 #include "server.h"
 
 int			quit_server(t_server *server, int code_return)
 {
-  close(server->fd);
-  free(server->local_ip);
-  free_list(server->root_clients);
+  static int		exec = 0;
+
+  if (!exec)
+  {
+    close(server->fd);
+    free(server->local_ip);
+    free_list(server->root_clients);
+    exec = 1;
+  }
   return (code_return);
 }
 
@@ -29,6 +35,7 @@ void			jump_quit(t_server *srv)
   else if (server)
   {
     quit_server(server, 0);
+    server->alive = 0;
   }
 }
 
@@ -36,16 +43,13 @@ void		catch_sigint(int sig)
 {
   (void)sig;
   jump_quit((t_server*)0);
-  exit(0);
 }
 
 int		main(int argc, char **argv)
 {
   t_server	server;
-  int		code_return;
 
   memset(&server, 0, sizeof(t_server));
-  code_return = 0;
   server.alive = 1;
   signal(SIGPIPE, SIG_IGN);
   signal(SIGINT, catch_sigint);
@@ -54,6 +58,6 @@ int		main(int argc, char **argv)
       || create_server(&server) == -1
       || init_root(&(server.root_clients)) == -1
       || loop_server(&server) == -1)
-    code_return = -1;
-  return (quit_server(&server, code_return));
+    return (quit_server(&server, -1));
+  return (quit_server(&server, 0));
 }

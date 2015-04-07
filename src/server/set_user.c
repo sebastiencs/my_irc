@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Tue Apr  7 04:39:01 2015 chapui_s
-** Last update Tue Apr  7 05:00:58 2015 chapui_s
+** Last update Tue Apr  7 15:35:07 2015 chapui_s
 */
 
 #include "server.h"
@@ -25,7 +25,7 @@ int		set_user(t_server *server __attribute__ ((unused)),
   }
   else
   {
-    client->user = client->tab_cmd[1];
+    client->user = strdup(client->tab_cmd[1]);
     real_name = strrchr(client->buffer_in, ':');
     if (real_name)
     {

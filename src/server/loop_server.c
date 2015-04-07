@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Mon Apr  6 15:43:27 2015 chapui_s
-** Last update Tue Apr  7 03:24:23 2015 chapui_s
+** Last update Tue Apr  7 14:48:28 2015 chapui_s
 */
 
 #include "server.h"
@@ -102,9 +102,17 @@ int			loop_server(t_server *server)
   while (server->alive)
   {
     fdmax = init_select(server, &rfds, &wfds, &efds);
-    if (select(fdmax + 1, &rfds, &wfds, &efds, (struct timeval*)0) == -1)
-      return (derror("select:"));
-    post_select(server, &rfds, &wfds);
+    if (server->alive)
+    {
+      if (select(fdmax + 1, &rfds, &wfds, &efds, (struct timeval*)0) == -1)
+      {
+	return (derror("select:"));
+      }
+    }
+    if (server->alive)
+    {
+      post_select(server, &rfds, &wfds);
+    }
   }
   return (0);
 }

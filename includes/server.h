@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Mon Apr  6 04:36:38 2015 chapui_s
-** Last update Tue Apr  7 04:55:43 2015 chapui_s
+** Last update Tue Apr  7 15:42:59 2015 chapui_s
 */
 
 #ifndef SERVER_H_
@@ -26,6 +26,10 @@
 # define ERR_UNKNOWNCOMMAND	(421)
 # define ERR_NEEDMOREPARAMS	(461)
 # define ERR_ALREADYREGISTRED	(462)
+# define ERR_NOTREGISTERED	(451)
+# define RPL_LISTSTART		(321)
+# define RPL_LIST		(322)
+# define RPL_LISTEND		(323)
 
 typedef enum		e_action
 {
@@ -74,6 +78,13 @@ typedef struct		s_reply
   char			*fmt;
 }			t_reply;
 
+typedef struct		s_chan
+{
+  char			*name;
+  int			nb_users;
+  struct s_chan		*next;
+}			t_chan;
+
 int		get_port(t_server *server, int argc, char **argv);
 int		create_server(t_server *server);
 int		push_client(t_client *root, int fd);
@@ -90,5 +101,6 @@ int		set_nickname(t_server *server, t_client *client);
 void		clean_telnet(char *s);
 void		free_client(t_client *client);
 int		set_user(t_server *server, t_client *client);
+int		list_chan(t_server *server, t_client *client);
 
 #endif /* !SERVER_H_ */
