@@ -33,7 +33,15 @@ SRC_SERVER	= $(DIR_SERVER)/server.c		\
 		  $(DIR_SERVER)/interpret_command.c	\
 		  $(DIR_SERVER)/get_port.c
 
-SRC_CLIENT	= $(DIR_CLIENT)/client.c
+SRC_CLIENT	= $(DIR_CLIENT)/client.c		\
+		  $(DIR_CLIENT)/nick_function.c		\
+		  $(DIR_CLIENT)/private_function.c	\
+		  $(DIR_CLIENT)/join_function.c		\
+		  $(DIR_CLIENT)/list_function.c		\
+		  $(DIR_CLIENT)/send_part.c		\
+		  $(DIR_CLIENT)/user_function.c		\
+		  $(DIR_CLIENT)/loop_client.c		\
+		  $(DIR_CLIENT)/server_function.c
 
 SRC_COMMON	= $(DIR_COMMON)/derror.c		\
 		  $(DIR_COMMON)/puts_telnet.c		\
