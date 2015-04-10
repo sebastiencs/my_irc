@@ -27,7 +27,7 @@ typedef struct	s_client
 typedef struct	s_cmd
 {
   char		*name;
-  int		(*fct)();
+  int		(*fct)(t_client *client);
   int		need_connected;
 }		t_cmd;
 

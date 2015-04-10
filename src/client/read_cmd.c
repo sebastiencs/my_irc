@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Fri Apr 10 16:51:56 2015 chapui_s
-** Last update Fri Apr 10 17:39:17 2015 chapui_s
+** Last update Fri Apr 10 19:29:05 2015 cholet_v
 */
 
 #include "client.h"
@@ -39,7 +39,7 @@ static int	check_command(t_client *client, char *buffer, char **tab)
   else if (cmds[i].name)
   {
     printf("Command found\n");
-    cmds[i].fct();
+    cmds[i].fct(client);
     // Quand tu traites la commande, faudra que t'envoies du texte au serveur.
     // T'ecris ce que tu dois envoyer dans client->buffer_out et tu set client->action a WRITE
   }

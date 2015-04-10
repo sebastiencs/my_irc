@@ -5,32 +5,10 @@
 ** Login   <cholet_v@epitech.net>
 **
 ** Started on  Fri Apr 10 14:11:54 2015 cholet_v
-** Last update Fri Apr 10 17:32:17 2015 chapui_s
+** Last update Fri Apr 10 18:54:51 2015 cholet_v
 */
 
 #include "client.h"
-
-/* int		looking_for_server(t_client *client) */
-/* { */
-/*   char		buffer[1024]; */
-
-/*   memset(buffer, 0, sizeof(buffer)); */
-/*   if (read(0, buffer, 1023) < 1) */
-/*     { */
-/*       client->run = 0; */
-/*       return (0); */
-/*     } */
-/*   client->tab = my_str_to_wordtab(buffer); */
-/*   if (strcmp(client->tab[0], "/server") != 0) */
-/*     { */
-/*       free_wordtab(&(client->tab)); */
-/*       return (0); */
-/*     } */
-/*   else */
-/*     try_connection(client); */
-/*   free_wordtab(&(client->tab)); */
-/*   return (0); */
-/* } */
 
 static void	init_select(t_client *client,
 			    fd_set *rfds,
