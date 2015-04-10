@@ -38,6 +38,9 @@ SRC_CLIENT	= $(DIR_CLIENT)/client.c		\
 		  $(DIR_CLIENT)/private_function.c	\
 		  $(DIR_CLIENT)/join_function.c		\
 		  $(DIR_CLIENT)/list_function.c		\
+		  $(DIR_CLIENT)/read_cmd.c		\
+		  $(DIR_CLIENT)/read_server.c		\
+		  $(DIR_CLIENT)/write_server.c		\
 		  $(DIR_CLIENT)/send_part.c		\
 		  $(DIR_CLIENT)/user_function.c		\
 		  $(DIR_CLIENT)/loop_client.c		\

@@ -20,21 +20,26 @@ typedef struct	s_client
   int		run;
   int		connect;
   char		**tab;
+  t_action	action;
+  char		buffer_out[BUFFER_SIZE];
 }		t_client;
 
 typedef struct	s_cmd
 {
   char		*name;
   int		(*fct)();
+  int		need_connected;
 }		t_cmd;
 
 int		loop_client(t_client *client);
 int		looking_for_server(t_client *client);
-int		check_command(char **tab);
 int		loop_client(t_client *client);
-int		looking_for_server(t_client *client);
+/* int		looking_for_server(t_client *client); */
 int		try_connection(t_client *client);
 int		switch_server(t_client *client, int tmpfd);
+int		read_cmd(t_client *client);
+int		write_server(t_client *client);
+int		read_server(t_client *client);
 
 int	send_nick();
 int	send_list();

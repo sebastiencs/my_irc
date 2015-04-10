@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Mon Apr  6 04:35:07 2015 chapui_s
-** Last update Tue Apr  7 14:17:33 2015 chapui_s
+** Last update Fri Apr 10 16:40:40 2015 chapui_s
 */
 
 #ifndef COMMON_H_
@@ -29,6 +29,12 @@
 # include <sys/mman.h>
 # include <stdarg.h>
 # include <errno.h>
+
+typedef enum		e_action
+{
+  READ = 0,
+  WRITE = 1,
+}			t_action;
 
 # define BUFFER_SIZE	(512 + 1)
 

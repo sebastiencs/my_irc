@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Mon Apr  6 04:36:38 2015 chapui_s
-** Last update Fri Apr 10 01:47:16 2015 chapui_s
+** Last update Fri Apr 10 16:40:33 2015 chapui_s
 */
 
 #ifndef SERVER_H_
@@ -40,12 +40,6 @@
 # define RPL_TOPIC		(332)
 # define RPL_NAMREPLY		(353)
 # define RPL_ENDOFNAMES		(366)
-
-typedef enum		e_action
-{
-  READ = 0,
-  WRITE = 1,
-}			t_action;
 
 typedef char		t_buffer;
 
