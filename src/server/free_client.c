@@ -5,17 +5,30 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Tue Apr  7 03:46:17 2015 chapui_s
-** Last update Tue Apr  7 15:36:28 2015 chapui_s
+** Last update Fri Apr 10 00:24:19 2015 chapui_s
 */
 
 #include "server.h"
 
-void		free_client(t_client *client)
+void			free_channel(t_list_channel *list)
+{
+  t_list_channel	*tmp;
+
+  while (list)
+  {
+    tmp = list->next;
+    free(list->name);
+    free(list);
+    list = tmp;
+  }
+}
+
+void			free_client(t_client *client)
 {
   close(client->fd);
   free(client->nick);
   free(client->user);
   free(client->real_name);
-  free(client->chanel);
+  free_channel(client->channel);
   free(client);
 }

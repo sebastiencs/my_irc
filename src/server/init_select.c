@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Mon Apr  6 16:33:38 2015 chapui_s
-** Last update Mon Apr  6 16:34:22 2015 chapui_s
+** Last update Wed Apr  8 21:51:21 2015 chapui_s
 */
 
 #include "server.h"
@@ -67,6 +67,8 @@ int			init_select(t_server *server, fd_set *rfds,
   FD_SET(server->fd, rfds);
   fdmax = server->fd;
   if (!init_writefds(server->root_clients, wfds, &fdmax))
+  {
     init_readfds(server->root_clients, rfds, &fdmax);
+  }
   return (fdmax);
 }

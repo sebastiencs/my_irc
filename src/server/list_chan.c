@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Tue Apr  7 15:19:21 2015 chapui_s
-** Last update Tue Apr  7 17:01:53 2015 chapui_s
+** Last update Fri Apr 10 00:25:05 2015 chapui_s
 */
 
 #include "server.h"
@@ -62,18 +62,22 @@ static void	push_chan(t_chan **list, char *name)
   }
 }
 
-static t_chan	*get_list(t_client *root)
+static t_chan		*get_list(t_client *root)
 {
-  t_chan	*channels;
-  t_client	*client;
+  t_list_channel	*list_channel;
+  t_chan		*channels;
+  t_client		*client;
+
 
   channels = (t_chan*)0;
   client = root->next;
   while (client != root)
   {
-    if (client->chanel)
+    list_channel = client->channel;
+    while (list_channel)
     {
-      push_chan(&channels, client->chanel);
+      push_chan(&channels, list_channel->name);
+      list_channel = list_channel->next;
     }
     client = client->next;
   }

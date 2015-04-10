@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Tue Apr  7 01:41:12 2015 chapui_s
-** Last update Tue Apr  7 18:31:59 2015 chapui_s
+** Last update Fri Apr 10 02:31:35 2015 chapui_s
 */
 
 #include "server.h"
@@ -58,8 +58,13 @@ t_reply		tab_reply[] =
   { 501, "501 :Unknown MODE flag\r\n" },
   { 502, "502 :Cant change mode for other users\r\n" },
   { 321, "321 Channel :Users Name\r\n" },
-  { 322, "322 #%s %d\r\n" },
+  { 322, "#%s %d\r\n" },
+  { 332, "332 %s #%s :%s\r\n" },
+  { 353, "353 %s = #%s :%s\r\n" },
+  { 366, "366 %s #%s :End of /NAMES list\r\n" },
   { 700, ":%s PRIVMSG %s :%s\r\n" },
+  { 701, ":%s PONG %s :%s\r\n" },
+  { 702, ":%s JOIN #%s\r\n" },
   { 323, "323 :End of /LIST\r\n" },
   { 0, (char*)0 }
 };
@@ -67,13 +72,13 @@ t_reply		tab_reply[] =
 void		make_reply(t_client *client, int i, va_list *ap)
 {
   char		*buffer;
-  /* va_list	ap; */
 
   buffer = client->buffer_out;
   memset(buffer, 0, BUFFER_SIZE);
-  /* va_start(ap, num); */
   vsnprintf(buffer, 512, tab_reply[i].fmt, *ap);
-  /* va_end(ap); */
+#ifdef DEBUG
+  fprintf(stdout, "--SEND: '%s'\n", buffer);
+#endif
   push_buffer(&(client->list_buffer), client->buffer_out);
   client->action = WRITE;
 }

@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Mon Apr  6 18:18:11 2015 chapui_s
-** Last update Tue Apr  7 16:08:56 2015 chapui_s
+** Last update Fri Apr 10 02:17:15 2015 chapui_s
 */
 
 #include "common.h"
@@ -23,7 +23,7 @@ int			write512_socket(int fd, char *buffer, size_t size)
     fprintf(stdout, "%s\n", "##TRY TO WRITE MORE THAN 512 BYTES##");
 #endif
   }
-  while ((current = write(fd, buffer, size)) > 0 && total < size)
+  while (total < size && (current = write(fd, buffer, size)) > 0)
   {
     buffer += (size_t)current;
     total += current;

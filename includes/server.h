@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Mon Apr  6 04:36:38 2015 chapui_s
-** Last update Tue Apr  7 18:53:53 2015 chapui_s
+** Last update Fri Apr 10 01:47:16 2015 chapui_s
 */
 
 #ifndef SERVER_H_
@@ -18,6 +18,7 @@
 # define ADDR_LOCAL_IP	("8.8.8.8")
 # define PORT_LOCAL_IP	(53)
 # define LIMIT_WRONG	(10)
+# define TOPIC		("chapui_s")
 
 # define ERR_NONICKNAMEGIVEN	(431)
 # define ERR_NICKNAMEINUSE	(433)
@@ -34,6 +35,11 @@
 # define ERR_NOTONCHANNEL	(442)
 # define ERR_NORECIPIENT	(411)
 # define ERR_NOSUCHNICK		(401)
+# define ERR_NOORIGIN		(409)
+# define ERR_CANNOTSENDTOCHAN	(404)
+# define RPL_TOPIC		(332)
+# define RPL_NAMREPLY		(353)
+# define RPL_ENDOFNAMES		(366)
 
 typedef enum		e_action
 {
@@ -49,13 +55,20 @@ typedef struct		s_list_buffer
   struct s_list_buffer	*next;
 }			t_list_buffer;
 
+typedef struct		s_list_channel
+{
+  char			*name;
+  struct s_list_channel	*prev;
+  struct s_list_channel	*next;
+}			t_list_channel;
+
 typedef struct		s_client
 {
   int			fd;
   char			*nick;
   char			*user;
   char			*real_name;
-  char			*chanel;
+  t_list_channel	*channel;
   int			registered;
   int			nb_wrong_cmd;
   t_action		action;
@@ -118,5 +131,12 @@ int		part_chan(t_server *server, t_client *client);
 void		push_buffer(t_list_buffer **list, t_buffer *buffer);
 void		get_buffer(t_list_buffer **list, t_buffer *buffer_out);
 int		priv_msg(t_server *server, t_client *client);
+int		ping_pong(t_server *server, t_client *client);
+int		cmp_channel(t_list_channel *chan1, t_list_channel *chan2);
+void		pop_channel(t_list_channel **list, t_list_channel *to_pop);
+int		push_channel(t_list_channel **list, char *name);
+int		is_in_channel(t_list_channel *list, char *name);
+t_list_channel	*get_channel_by_name(t_list_channel *list, char *name);
+int		names(t_server *server, t_client *client);
 
 #endif /* !SERVER_H_ */

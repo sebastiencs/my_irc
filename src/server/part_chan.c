@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Tue Apr  7 17:07:22 2015 chapui_s
-** Last update Tue Apr  7 17:21:08 2015 chapui_s
+** Last update Fri Apr 10 00:24:58 2015 chapui_s
 */
 
 #include "server.h"
@@ -17,17 +17,18 @@ int		part_chan(t_server *server __attribute__ ((unused)),
   {
     reply(client, ERR_NEEDMOREPARAMS, client->tab_cmd[0]);
   }
-  else if (!client->chanel || strcmp(client->tab_cmd[1], client->chanel))
+  else if (!client->channel || !is_in_channel(client->channel,
+					      client->tab_cmd[1]))
   {
     reply(client, ERR_NOTONCHANNEL, client->tab_cmd[1]);
   }
   else
   {
 #ifdef DEBUG
-    fprintf(stdout, "--%s PART %s--\n", client->nick, client->chanel);
+    fprintf(stdout, "--%s PART %s--\n", client->nick, client->tab_cmd[1]);
 #endif
-    free(client->chanel);
-    client->chanel = (char*)0;
+    pop_channel(&(client->channel), get_channel_by_name(client->channel,
+							client->tab_cmd[1]));
   }
   return (0);
 }

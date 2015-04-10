@@ -21,10 +21,13 @@ SRC_SERVER	= $(DIR_SERVER)/server.c		\
 		  $(DIR_SERVER)/reply.c			\
 		  $(DIR_SERVER)/list_chan.c		\
 		  $(DIR_SERVER)/join_chan.c		\
+		  $(DIR_SERVER)/ping_pong.c		\
+		  $(DIR_SERVER)/names.c			\
 		  $(DIR_SERVER)/part_chan.c		\
 		  $(DIR_SERVER)/clean_telnet.c		\
 		  $(DIR_SERVER)/free_client.c		\
 		  $(DIR_SERVER)/priv_msg.c		\
+		  $(DIR_SERVER)/list_channel.c		\
 		  $(DIR_SERVER)/set_nickname.c		\
 		  $(DIR_SERVER)/init_select.c		\
 		  $(DIR_SERVER)/interpret_command.c	\
