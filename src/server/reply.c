@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Tue Apr  7 01:41:12 2015 chapui_s
-** Last update Fri Apr 10 02:31:35 2015 chapui_s
+** Last update Fri Apr 10 02:55:32 2015 chapui_s
 */
 
 #include "server.h"
@@ -65,6 +65,7 @@ t_reply		tab_reply[] =
   { 700, ":%s PRIVMSG %s :%s\r\n" },
   { 701, ":%s PONG %s :%s\r\n" },
   { 702, ":%s JOIN #%s\r\n" },
+  { 703, ":%s PART %s\r\n" },
   { 323, "323 :End of /LIST\r\n" },
   { 0, (char*)0 }
 };

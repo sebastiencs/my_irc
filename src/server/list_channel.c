@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Thu Apr  9 22:44:41 2015 chapui_s
-** Last update Fri Apr 10 00:24:37 2015 chapui_s
+** Last update Fri Apr 10 03:02:39 2015 chapui_s
 */
 
 #include "server.h"
@@ -86,7 +86,11 @@ void			pop_channel(t_list_channel **list,
 t_list_channel		*get_channel_by_name(t_list_channel *list,
 					     char *name)
 {
-  while (list)
+  if (name && name[0] == '#')
+  {
+    name += 1;
+  }
+  while (name && list)
   {
     if (list->name && !strcmp(list->name, name))
       return (list);
