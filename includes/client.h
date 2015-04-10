@@ -12,6 +12,8 @@
 # include <unistd.h>
 # include "common.h"
 
+# define MAXCHAN	10
+
 typedef struct	s_client
 {
   char		*ip;
@@ -22,6 +24,7 @@ typedef struct	s_client
   char		**tab;
   t_action	action;
   char		buffer_out[BUFFER_SIZE];
+  char		*channel[MAXCHAN];
 }		t_client;
 
 typedef struct	s_cmd
