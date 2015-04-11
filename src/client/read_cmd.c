@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Fri Apr 10 16:51:56 2015 chapui_s
-** Last update Sun Apr 12 00:42:16 2015 chapui_s
+** Last update Sun Apr 12 00:58:47 2015 cholet_v
 */
 
 #include "client.h"
@@ -50,22 +50,11 @@ static int	check_command(t_client *client, char **tab)
     ++i;
   }
   if (cmds[i].name && cmds[i].need_connected == 1 && client->connect == 0)
-  {
     printf("You are not connected\n");
-  }
   else if (cmds[i].name)
-  {
-    printf("Command found\n");
     cmds[i].fct(client);
-    // Quand tu traites la commande, faudra que t'envoies du texte au serveur.
-    // T'ecris ce que tu dois envoyer dans client->buffer_out et tu set client->action a WRITE
-  }
   else
-  {
     channel_message(client);
-    // Pareil ici, t'ecris dans buffer_out
-    // SEND MESSAGE (PRIVMSG #chanel :buffer)
-  }
   return (0);
 }
 

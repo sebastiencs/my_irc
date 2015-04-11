@@ -5,7 +5,7 @@
 ** Login   <cholet_v@epitech.net>
 **
 ** Started on  Fri Apr 10 01:25:17 2015 cholet_v
-** Last update Sat Apr 11 22:25:32 2015 chapui_s
+** Last update Sun Apr 12 00:56:49 2015 cholet_v
 */
 
 #include "client.h"
@@ -18,6 +18,5 @@ int		send_users(t_client *client)
     return (derror("You're not in any channel"));
   snprintf(client->buffer_out, 512, "NAMES %s", channel);
   client->action = WRITE;
-  printf("send_users\n");
   return (0);
 }
