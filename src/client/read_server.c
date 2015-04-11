@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Fri Apr 10 17:25:07 2015 chapui_s
-** Last update Sun Apr 12 00:40:29 2015 chapui_s
+** Last update Sun Apr 12 00:57:09 2015 chapui_s
 */
 
 #include "client.h"
@@ -55,7 +55,7 @@ static void	manage_prefix(t_client *client __attribute__ ((unused)),
 
 static void	manage_code(t_client *client __attribute__ ((unused)),
 			    char *buffer,
-			    int code __attribute__ ((unused)))
+			    int code)
 {
   char		*msg;
 
@@ -65,7 +65,14 @@ static void	manage_code(t_client *client __attribute__ ((unused)),
     msg += 1;
     clean_telnet(msg);
     clear_line();
-    printf("%s\n", msg);
+    if (code == RPL_NAMREPLY)
+    {
+      printf("USERS: %s\n", msg);
+    }
+    else if (code != RPL_TOPIC && code != RPL_ENDOFNAMES)
+    {
+      printf("%s\n", msg);
+    }
   }
 }
 

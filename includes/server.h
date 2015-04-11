@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Mon Apr  6 04:36:38 2015 chapui_s
-** Last update Fri Apr 10 16:40:33 2015 chapui_s
+** Last update Sun Apr 12 00:53:49 2015 chapui_s
 */
 
 #ifndef SERVER_H_
@@ -18,28 +18,7 @@
 # define ADDR_LOCAL_IP	("8.8.8.8")
 # define PORT_LOCAL_IP	(53)
 # define LIMIT_WRONG	(10)
-# define TOPIC		("chapui_s")
-
-# define ERR_NONICKNAMEGIVEN	(431)
-# define ERR_NICKNAMEINUSE	(433)
-# define ERR_ERRONEUSNICKNAME	(432)
-# define ERR_NICKCOLLISION	(436)
-# define ERR_UNKNOWNCOMMAND	(421)
-# define ERR_NEEDMOREPARAMS	(461)
-# define ERR_ALREADYREGISTRED	(462)
-# define ERR_NOTREGISTERED	(451)
-# define RPL_LISTSTART		(321)
-# define RPL_LIST		(322)
-# define RPL_LISTEND		(323)
-# define ERR_TOOMANYCHANNELS	(405)
-# define ERR_NOTONCHANNEL	(442)
-# define ERR_NORECIPIENT	(411)
-# define ERR_NOSUCHNICK		(401)
-# define ERR_NOORIGIN		(409)
-# define ERR_CANNOTSENDTOCHAN	(404)
-# define RPL_TOPIC		(332)
-# define RPL_NAMREPLY		(353)
-# define RPL_ENDOFNAMES		(366)
+# define TOPIC		("NO_TOPIC")
 
 typedef char		t_buffer;
 
