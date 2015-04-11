@@ -5,7 +5,7 @@
 ** Login   <cholet_v@epitech.net>
 **
 ** Started on  Fri Apr 10 01:24:29 2015 cholet_v
-** Last update Sat Apr 11 16:45:47 2015 cholet_v
+** Last update Sat Apr 11 21:50:52 2015 chapui_s
 */
 
 #include "client.h"
@@ -17,7 +17,8 @@ int	send_part(t_client *client)
   i = 0;
   if (count_tab(client->tab) != 2)
     return (derrorn("/part only take 1 argument"));
-  while (i < 10 && (strcmp(client->tab[1], client->channel[i]) != 0))
+  while (i < 10 && (!client->channel[i]
+		    || strcmp(client->tab[1], client->channel[i])))
     ++i;
   if (i == 10)
     return (derrorn("Error you are not is this channel"));
