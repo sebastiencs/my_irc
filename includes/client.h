@@ -44,6 +44,7 @@ int		switch_server(t_client *client, int tmpfd);
 int		read_cmd(t_client *client);
 int		write_server(t_client *client);
 int		read_server(t_client *client);
+void		clear_line();
 
 int	send_nick(t_client *client);
 int	send_list(t_client *client);

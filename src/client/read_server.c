@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Fri Apr 10 17:25:07 2015 chapui_s
-** Last update Sun Apr 12 00:38:44 2015 chapui_s
+** Last update Sun Apr 12 00:40:29 2015 chapui_s
 */
 
 #include "client.h"
@@ -22,7 +22,7 @@ static void	clean_telnet(char *s)
   }
 }
 
-static void		clear_line()
+void			clear_line()
 {
   static const char	dl[] = {27, 91, 77, 0};
   static const char	cr[] = {13, 0};

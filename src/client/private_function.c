@@ -5,7 +5,7 @@
 ** Login   <cholet_v@epitech.net>
 **
 ** Started on  Fri Apr 10 01:26:19 2015 cholet_v
-** Last update Sat Apr 11 23:55:27 2015 cholet_v
+** Last update Sun Apr 12 00:44:13 2015 chapui_s
 */
 
 #include "client.h"
@@ -34,7 +34,7 @@ int	send_private(t_client *client)
   if (count_tab(client->tab) < 3)
     return (derrorn("/msg usage: /msg _nickname_ _message_"));
   pos = recup_msg(client->buffer_in);
-  snprintf(client->buffer_out, 512, "PRIVMSG %s: %s",
+  snprintf(client->buffer_out, 512, "PRIVMSG %s :%s",
 	   client->tab[1], client->buffer_in + pos);
   client->action = WRITE;
   return (0);
