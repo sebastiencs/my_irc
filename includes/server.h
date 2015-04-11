@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Mon Apr  6 04:36:38 2015 chapui_s
-** Last update Fri Apr 10 16:40:33 2015 chapui_s
+** Last update Sun Apr 12 00:50:24 2015 chapui_s
 */
 
 #ifndef SERVER_H_
@@ -18,7 +18,7 @@
 # define ADDR_LOCAL_IP	("8.8.8.8")
 # define PORT_LOCAL_IP	(53)
 # define LIMIT_WRONG	(10)
-# define TOPIC		("chapui_s")
+# define TOPIC		("NO_TOPIC")
 
 # define ERR_NONICKNAMEGIVEN	(431)
 # define ERR_NICKNAMEINUSE	(433)
