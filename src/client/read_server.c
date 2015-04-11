@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Fri Apr 10 17:25:07 2015 chapui_s
-** Last update Sun Apr 12 01:13:12 2015 chapui_s
+** Last update Sun Apr 12 01:50:39 2015 chapui_s
 */
 
 #include "client.h"
@@ -28,8 +28,8 @@ static void	clean_telnet(char *s)
 
 void			clear_line()
 {
-  static const char	dl[] = {27, 91, 77, 0};
-  static const char	cr[] = {13, 0};
+  static const char	dl[] = { 27, 91, 77, 0 };
+  static const char	cr[] = { 13, 0 };
 
   write(1, dl, strlen(dl));
   write(1, cr, strlen(cr));
@@ -71,12 +71,12 @@ static void	manage_code(t_client *client __attribute__ ((unused)),
 {
   char		*msg;
 
+  clear_line();
   msg = strchr(buffer, ':');
   if (msg)
   {
     msg += 1;
     clean_telnet(msg);
-    clear_line();
     if (code == RPL_NAMREPLY)
     {
       printf("Users in channel: [%s]\n", msg);
@@ -86,6 +86,24 @@ static void	manage_code(t_client *client __attribute__ ((unused)),
       printf("%s\n", msg);
     }
   }
+  else
+  {
+    msg = buffer;
+    clean_telnet(msg);
+    msg += 4;
+    printf("%s\n", msg);
+  }
+}
+
+void		manage_other(t_client *client __attribute__ ((unused)),
+			     char *buffer)
+{
+  char		*msg;
+
+  clear_line();
+  msg = buffer;
+  clean_telnet(msg);
+  printf("%s\n", msg);
 }
 
 int		read_server(t_client *client)
@@ -94,7 +112,10 @@ int		read_server(t_client *client)
   int		number;
 
   memset(buffer, 0, BUFFER_SIZE);
-  read512_socket(client->fd, buffer);
+  if (read512_socket(client->fd, buffer) <= 0)
+  {
+    return (derrorn("Server disconnect"));
+  }
   if (strlen(buffer) > 0 && buffer[0] == ':')
   {
     manage_prefix(client, buffer);
@@ -105,9 +126,7 @@ int		read_server(t_client *client)
   }
   else
   {
-    printf("ICI\n");
-    /* clear_line(); */
-    //MANAGE JE SAIS PAS QUOI
+    manage_other(client, buffer);
   }
   return (0);
 }

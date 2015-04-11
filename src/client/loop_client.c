@@ -5,7 +5,7 @@
 ** Login   <cholet_v@epitech.net>
 **
 ** Started on  Fri Apr 10 14:11:54 2015 cholet_v
-** Last update Sat Apr 11 23:14:20 2015 chapui_s
+** Last update Sun Apr 12 01:52:32 2015 chapui_s
 */
 
 #include "client.h"
@@ -29,25 +29,26 @@ static void	init_select(t_client *client,
   FD_SET(0, rfds);
 }
 
-static void	post_select(t_client *client,
+static int	post_select(t_client *client,
 			    fd_set *rfds,
 			    fd_set *wfds)
 {
   if (FD_ISSET(0, rfds))
   {
     // READ CMD
-    read_cmd(client);
+    return (read_cmd(client));
   }
   else if (FD_ISSET(client->fd, rfds))
   {
     // READ FROM SERVER
-    read_server(client);
+    return (read_server(client));
   }
   else if (FD_ISSET(client->fd, wfds))
   {
-    write_server(client);
+    return (write_server(client));
     // WRITE TO SERVER
   }
+  return (0);
 }
 
 static void	prompt()
@@ -77,7 +78,8 @@ int		loop_client(t_client *client)
     }
     if (client->run)
     {
-      post_select(client, &rfds, &wfds);
+      if (post_select(client, &rfds, &wfds) < 0)
+	return (0);
     }
   }
   return (0);
