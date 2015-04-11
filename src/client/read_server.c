@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Fri Apr 10 17:25:07 2015 chapui_s
-** Last update Sun Apr 12 00:57:09 2015 chapui_s
+** Last update Sun Apr 12 01:13:12 2015 chapui_s
 */
 
 #include "client.h"
@@ -19,6 +19,10 @@ static void	clean_telnet(char *s)
   {
     s[len - 1] = 0;
     s[len - 2] = 0;
+    if (len > 2 && s[len - 3] == ' ')
+    {
+      s[len - 3] = 0;
+    }
   }
 }
 
@@ -39,17 +43,25 @@ static void	manage_prefix(t_client *client __attribute__ ((unused)),
   char		*dest;
   char		*msg;
 
-  if (!(tab = my_str_to_wordtab(buffer)) || count_tab(tab) < 4)
+  if (!(tab = my_str_to_wordtab(buffer)))
     return ;
-  user = ((char*)tab[0]) + 1;
-  dest = tab[2];
-  msg = strchr(buffer + 1, ':');
-  if (msg)
+  clear_line();
+  if (count_tab(tab) >= 4)
   {
-    msg += 1;
-    clean_telnet(msg);
-    clear_line();
-    printf("%s <%s>: %s\n", dest, user, msg);
+    user = ((char*)tab[0]) + 1;
+    dest = tab[2];
+    msg = strchr(buffer + 1, ':');
+    if (msg)
+    {
+      msg += 1;
+      clean_telnet(msg);
+      printf("%s <%s>: %s\n", dest, user, msg);
+    }
+  }
+  else
+  {
+    clean_telnet(buffer);
+    printf("%s\n", buffer);
   }
 }
 
@@ -67,7 +79,7 @@ static void	manage_code(t_client *client __attribute__ ((unused)),
     clear_line();
     if (code == RPL_NAMREPLY)
     {
-      printf("USERS: %s\n", msg);
+      printf("Users in channel: [%s]\n", msg);
     }
     else if (code != RPL_TOPIC && code != RPL_ENDOFNAMES)
     {
@@ -93,6 +105,8 @@ int		read_server(t_client *client)
   }
   else
   {
+    printf("ICI\n");
+    /* clear_line(); */
     //MANAGE JE SAIS PAS QUOI
   }
   return (0);
