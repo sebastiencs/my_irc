@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Fri Apr 10 16:51:56 2015 chapui_s
-** Last update Fri Apr 10 19:29:05 2015 cholet_v
+** Last update Sat Apr 11 18:44:24 2015 cholet_v
 */
 
 #include "client.h"
@@ -19,10 +19,27 @@ t_cmd		cmds[] =
   { "/users", send_users, 1 },
   { "/msg", send_private, 1 },
   { "/server", try_connection, 0 },
+  { "/chanli", chanli, 1},
   { (char*)0, (void*)0, 0 }
 };
 
-static int	check_command(t_client *client, char *buffer, char **tab)
+int		chanli(t_client *client)
+{
+  int		i;
+
+  i = 0;
+  printf("Current-- %d\nTotal-- %d\n",
+	 client->current_chan, count_tab(client->channel));
+  while (i < 10)
+    {
+      if (client->channel[i] != NULL)
+	printf("%s\n", client->channel[i]);
+      ++i;
+    }
+  return (0);
+}
+
+static int	check_command(t_client *client, char **tab)
 {
   int		i;
 
@@ -45,6 +62,7 @@ static int	check_command(t_client *client, char *buffer, char **tab)
   }
   else
   {
+    channel_message(client);
     // Pareil ici, t'ecris dans buffer_out
     // SEND MESSAGE (PRIVMSG #chanel :buffer)
   }
@@ -70,9 +88,10 @@ int		read_cmd(t_client *client)
   fgets(buffer, 512, stdin);
   clean_buffer(buffer);
   if (strlen(buffer) > 0 && (client->tab = my_str_to_wordtab(buffer)))
-  {
-    check_command(client, buffer, client->tab);
-    free_wordtab(&(client->tab));
-  }
+    {
+      client->buffer_in = buffer;
+      check_command(client, client->tab);
+      free_wordtab(&(client->tab));
+    }
   return (0);
 }

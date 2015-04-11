@@ -44,7 +44,8 @@ SRC_CLIENT	= $(DIR_CLIENT)/client.c		\
 		  $(DIR_CLIENT)/send_part.c		\
 		  $(DIR_CLIENT)/user_function.c		\
 		  $(DIR_CLIENT)/loop_client.c		\
-		  $(DIR_CLIENT)/server_function.c
+		  $(DIR_CLIENT)/server_function.c       \
+		  $(DIR_CLIENT)/chan_message.c
 
 SRC_COMMON	= $(DIR_COMMON)/derror.c		\
 		  $(DIR_COMMON)/puts_telnet.c		\

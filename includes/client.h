@@ -24,7 +24,9 @@ typedef struct	s_client
   char		**tab;
   t_action	action;
   char		buffer_out[BUFFER_SIZE];
+  char		*buffer_in;
   char		*channel[MAXCHAN];
+  int		current_chan;
 }		t_client;
 
 typedef struct	s_cmd
@@ -37,18 +39,18 @@ typedef struct	s_cmd
 int		loop_client(t_client *client);
 int		looking_for_server(t_client *client);
 int		loop_client(t_client *client);
-/* int		looking_for_server(t_client *client); */
 int		try_connection(t_client *client);
 int		switch_server(t_client *client, int tmpfd);
 int		read_cmd(t_client *client);
 int		write_server(t_client *client);
 int		read_server(t_client *client);
 
-int	send_nick();
-int	send_list();
-int	send_join();
-int	send_users();
-int	send_part();
-int	send_private();
-
+int	send_nick(t_client *client);
+int	send_list(t_client *client);
+int	send_join(t_client *client);
+int	send_users(t_client *client);
+int	send_part(t_client *client);
+int	send_private(t_client *client);
+int	chanli(t_client *client);
+int	channel_message(t_client *client);
 #endif /* !CLIENT_H_ */
