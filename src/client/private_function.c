@@ -5,14 +5,37 @@
 ** Login   <cholet_v@epitech.net>
 **
 ** Started on  Fri Apr 10 01:26:19 2015 cholet_v
-** Last update Fri Apr 10 19:26:06 2015 cholet_v
+** Last update Sat Apr 11 23:55:27 2015 cholet_v
 */
 
 #include "client.h"
 
+int	recup_msg(char *str)
+{
+  int	i;
+
+  i = 0;
+  while (str[i] == ' ' || str[i] == '\t')
+    ++i;
+  while (str[i] != ' ' && str[i] != '\t')
+    ++i;
+  while (str[i] == ' ' || str[i] == '\t')
+    ++i;
+  while (str[i] != ' ' && str[i] != '\t')
+    ++i;
+  while (str[i] == ' ' || str[i] == '\t')
+    ++i;
+  return (i);
+}
+
 int	send_private(t_client *client)
 {
-  (void)client;
-  printf("send_private\n");
+  int	pos;
+  if (count_tab(client->tab) < 3)
+    return (derrorn("/msg usage: /msg _nickname_ _message_"));
+  pos = recup_msg(client->buffer_in);
+  snprintf(client->buffer_out, 512, "PRIVMSG %s: %s",
+	   client->tab[1], client->buffer_in + pos);
+  client->action = WRITE;
   return (0);
 }
