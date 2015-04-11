@@ -5,13 +5,23 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Fri Apr 10 17:27:44 2015 chapui_s
-** Last update Sat Apr 11 00:02:35 2015 cholet_v
+** Last update Sat Apr 11 02:07:39 2015 chapui_s
 */
 
 #include "client.h"
 
 int		write_server(t_client *client)
 {
+  if (strlen(client->buffer_out) <= BUFFER_SIZE - 3)
+  {
+    strcat(client->buffer_out, "\r\n");
+  }
+#ifdef DEBUG
+  else
+  {
+    fprintf(stdout, "%s\n", "##Too many character in write_server##");
+  }
+#endif
   write512_socket(client->fd, client->buffer_out, strlen(client->buffer_out));
   memset(client->buffer_out, 0, BUFFER_SIZE);
   client->action = READ;
