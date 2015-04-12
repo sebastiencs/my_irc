@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Fri Apr 10 17:25:07 2015 chapui_s
-** Last update Sun Apr 12 03:20:25 2015 cholet_v
+** Last update Sun Apr 12 04:58:25 2015 chapui_s
 */
 
 #include "client.h"
@@ -81,7 +81,8 @@ static void		manage_code(t_client *client __attribute__ ((unused)),
 	{
 	  printf("Users in channel: [%s]\n", msg);
 	}
-      else if (code != RPL_TOPIC && code != RPL_ENDOFNAMES)
+      else if (code != RPL_TOPIC && code != RPL_ENDOFNAMES
+	       && code != RPL_LISTSTART && code != RPL_LISTEND)
 	{
 	  printf("%s\n", msg);
 	}
