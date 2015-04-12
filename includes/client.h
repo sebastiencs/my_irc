@@ -5,7 +5,7 @@
 ** Login   <cholet_v@epitech.net>
 **
 ** Started on  Sun Apr 12 03:34:32 2015 cholet_v
-** Last update Sun Apr 12 03:34:34 2015 cholet_v
+** Last update Sun Apr 12 05:45:44 2015 chapui_s
 */
 
 #ifndef CLIENT_H_
@@ -64,5 +64,8 @@ int			send_part(t_client *client);
 int			send_private(t_client *client);
 int			chanli(t_client *client);
 int			channel_message(t_client *client);
+void			clear_and_print(char *s);
+void			clear_and_printf(char *fmt, ...);
+void			clean_telnet(char *s);
 
 #endif /* !CLIENT_H_ */

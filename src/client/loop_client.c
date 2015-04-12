@@ -5,7 +5,7 @@
 ** Login   <cholet_v@epitech.net>
 **
 ** Started on  Fri Apr 10 14:11:54 2015 cholet_v
-** Last update Sun Apr 12 03:19:24 2015 cholet_v
+** Last update Sun Apr 12 06:24:18 2015 chapui_s
 */
 
 #include "client.h"
@@ -35,27 +35,29 @@ static int	post_select(t_client *client,
 {
   if (FD_ISSET(0, rfds))
     {
-      // READ CMD
       return (read_cmd(client));
     }
   else if (FD_ISSET(client->fd, rfds))
     {
-      // READ FROM SERVER
       return (read_server(client));
     }
   else if (FD_ISSET(client->fd, wfds))
     {
       return (write_server(client));
-      // WRITE TO SERVER
     }
   return (0);
 }
 
 static void	prompt(t_client *client)
 {
-  if (client->channel[client->current_chan])
-    write(1, client->channel[client->current_chan],
-	  strlen(client->channel[client->current_chan]));
+  char		*channel;
+
+  channel = client->channel[client->current_chan];
+  if (channel)
+  {
+    my_putstr("#");
+    my_putstr(channel);
+  }
   write(1, "-> ", 3);
 }
 
