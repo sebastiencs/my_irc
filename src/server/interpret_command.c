@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Mon Apr  6 21:45:01 2015 chapui_s
-** Last update Sun Apr 12 08:25:58 2015 chapui_s
+** Last update Sun Apr 12 21:40:44 2015 chapui_s
 */
 
 #include "server.h"
@@ -45,9 +45,7 @@ int		interpret_command(t_server *server, t_client *client)
   while (cmds[i].name && strncmp(client->buffer_in,
 				 cmds[i].name,
 				 strlen(cmds[i].name)))
-    {
       i += 1;
-    }
   if (cmds[i].name && cmds[i].need_registered && !client->registered)
     {
       reply(client, ERR_NOTREGISTERED);

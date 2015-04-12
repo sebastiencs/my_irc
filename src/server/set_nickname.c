@@ -5,24 +5,28 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Tue Apr  7 01:02:11 2015 chapui_s
-** Last update Sun Apr 12 10:42:17 2015 chapui_s
+** Last update Sun Apr 12 22:01:55 2015 chapui_s
 */
 
 #include "server.h"
 
-int		is_already_used(t_client *root, char *nick)
+int		is_already_used(t_client *root, t_client *client, char *nick)
 {
   t_client	*tmp;
 
+  client->nick = strdup(nick);
   if (strlen(nick) > 9)
     nick[9] = 0;
   tmp = root->next;
   while (tmp != root)
     {
-      if (tmp->nick && !strncmp(tmp->nick, nick, 9))
+      if (tmp->nick && !strncmp(tmp->nick, nick, 9) && tmp != client)
+      {
 	return (1);
+      }
       tmp = tmp->next;
     }
+  free(client->nick);
   return (0);
 }
 
@@ -54,7 +58,7 @@ int		set_nickname(t_server *server, t_client *client)
       reply(client, ERR_NONICKNAMEGIVEN);
       return (0);
     }
-  already_used = is_already_used(server->root_clients, nick);
+  already_used = is_already_used(server->root_clients, client, nick);
   if (client->nick && already_used)
     reply(client, ERR_NICKNAMEINUSE, nick);
   else if (is_bad_caracters(nick))
