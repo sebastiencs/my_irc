@@ -5,7 +5,7 @@
 ** Login   <cholet_v@epitech.net>
 **
 ** Started on  Fri Apr 10 01:24:29 2015 cholet_v
-** Last update Sun Apr 12 03:18:14 2015 cholet_v
+** Last update Sun Apr 12 17:27:33 2015 cholet_v
 */
 
 #include "client.h"
@@ -20,7 +20,7 @@ int	send_part(t_client *client)
   while (i < MAXCHAN && (!client->channel[i]
 			 || strcmp(client->tab[1], client->channel[i])))
     ++i;
-  if (i == 10)
+  if (i == MAXCHAN)
     return (derrorn("Error you are not is this channel"));
   free(client->channel[i]);
   client->channel[i] = NULL;

@@ -1,11 +1,11 @@
 ##
 ## Makefile for epitech in /home/chapuis_s/rendu/
-## 
+##
 ## Made by chapui_s
 ## Login   <chapui_s@epitech.eu>
-## 
+##
 ## Started on  Sun Apr 12 05:20:57 2015 chapui_s
-## Last update Sun Apr 12 10:57:44 2015 chapui_s
+## Last update Sun Apr 12 21:15:00 2015 chapui_s
 ##
 
 NAME		= myirc
@@ -62,7 +62,8 @@ SRC_CLIENT	= $(DIR_CLIENT)/client.c		\
 		  $(DIR_CLIENT)/send_file.c		\
 		  $(DIR_CLIENT)/server_function.c       \
 		  $(DIR_CLIENT)/chan_message.c		\
-		  $(DIR_CLIENT)/switch_chan.c
+		  $(DIR_CLIENT)/switch_chan.c		\
+		  $(DIR_CLIENT)/quitting_chan.c
 
 SRC_COMMON	= $(DIR_COMMON)/derror.c		\
 		  $(DIR_COMMON)/puts_telnet.c		\

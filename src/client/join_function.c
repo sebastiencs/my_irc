@@ -4,7 +4,7 @@
 ** Login   <cholet_v@epitech.net>
 **
 ** Started on  Fri Apr 10 01:23:37 2015 cholet_v
-** Last update Sun Apr 12 05:11:21 2015 chapui_s
+** Last update Sun Apr 12 18:07:05 2015 cholet_v
 */
 
 #include "client.h"
@@ -29,6 +29,8 @@ int		send_join(t_client *client)
   int		i;
 
   i = 0;
+  if (count_tab(client->channel) > MAXCHAN)
+    return (derrorn("You have reach the limit of open chan"));
   if (count_tab(client->tab) != 2)
     return (derrorn("/join only take 1 argument"));
   if (check_haveit(client->tab[1], client) == 1)
