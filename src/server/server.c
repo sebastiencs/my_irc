@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Mon Apr  6 02:26:45 2015 chapui_s
-** Last update Tue Apr  7 14:09:36 2015 chapui_s
+** Last update Sun Apr 12 03:25:25 2015 cholet_v
 */
 
 #include "server.h"
@@ -15,12 +15,12 @@ int			quit_server(t_server *server, int code_return)
   static int		exec = 0;
 
   if (!exec)
-  {
-    close(server->fd);
-    free(server->local_ip);
-    free_list(server->root_clients);
-    exec = 1;
-  }
+    {
+      close(server->fd);
+      free(server->local_ip);
+      free_list(server->root_clients);
+      exec = 1;
+    }
   return (code_return);
 }
 
@@ -29,14 +29,14 @@ void			jump_quit(t_server *srv)
   static t_server	*server;
 
   if (srv)
-  {
-    server = srv;
-  }
+    {
+      server = srv;
+    }
   else if (server)
-  {
-    quit_server(server, 0);
-    server->alive = 0;
-  }
+    {
+      quit_server(server, 0);
+      server->alive = 0;
+    }
 }
 
 void		catch_sigint(int sig)

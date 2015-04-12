@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Wed Apr  8 00:56:38 2015 chapui_s
-** Last update Fri Apr 10 02:46:46 2015 chapui_s
+** Last update Sun Apr 12 03:27:12 2015 cholet_v
 */
 
 #include "server.h"
@@ -41,13 +41,13 @@ int		names(t_server *server, t_client *client)
     chanel += 1;
   list = server->root_clients->next;
   while (list != server->root_clients)
-  {
-    if (is_in_channel(list->channel, chanel))
-      add_name(buffer, list->nick, &i);
-    if (i == 20)
-      send_buffer(client, buffer, chanel, &i);
-    list = list->next;
-  }
+    {
+      if (is_in_channel(list->channel, chanel))
+	add_name(buffer, list->nick, &i);
+      if (i == 20)
+	send_buffer(client, buffer, chanel, &i);
+      list = list->next;
+    }
   if (i > 0)
     reply(client, RPL_NAMREPLY, client->nick, chanel, buffer);
   reply(client, RPL_ENDOFNAMES, client->nick, chanel);

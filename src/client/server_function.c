@@ -5,19 +5,19 @@
 ** Login   <cholet_v@epitech.net>
 **
 ** Started on  Fri Apr 10 14:10:42 2015 cholet_v
-** Last update Fri Apr 10 18:08:02 2015 cholet_v
+** Last update Sun Apr 12 03:20:55 2015 cholet_v
 */
 
 #include "client.h"
 
-int		switch_server(t_client *client, int tmpfd)
+int			switch_server(t_client *client, int tmpfd)
 {
   close(client->fd);
   client->fd = tmpfd;
   return (0);
 }
 
-int		try_connection(t_client *client)
+int			try_connection(t_client *client)
 {
   struct protoent	*pe;
   struct sockaddr_in	s_in;

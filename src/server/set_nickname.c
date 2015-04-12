@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Tue Apr  7 01:02:11 2015 chapui_s
-** Last update Tue Apr  7 17:23:03 2015 chapui_s
+** Last update Sun Apr 12 03:28:04 2015 cholet_v
 */
 
 #include "server.h"
@@ -18,11 +18,11 @@ int		is_already_used(t_client *root, char *nick)
     nick[9] = 0;
   tmp = root->next;
   while (tmp != root)
-  {
-    if (tmp->nick && !strncmp(tmp->nick, nick, 9))
-      return (1);
-    tmp = tmp->next;
-  }
+    {
+      if (tmp->nick && !strncmp(tmp->nick, nick, 9))
+	return (1);
+      tmp = tmp->next;
+    }
   return (0);
 }
 
@@ -33,13 +33,13 @@ int		is_bad_caracters(char *s)
 
   i = 0;
   while (s[i])
-  {
-    if (!(s[i] >= 'a' && s[i] <= 'z')
-	&& !(s[i] >= 'A' && s[i] <= 'Z')
-	&& !strchr(good, s[i]))
-      return (1);
-    i += 1;
-  }
+    {
+      if (!(s[i] >= 'a' && s[i] <= 'z')
+	  && !(s[i] >= 'A' && s[i] <= 'Z')
+	  && !strchr(good, s[i]))
+	return (1);
+      i += 1;
+    }
   return (0);
 }
 
@@ -50,10 +50,10 @@ int		set_nickname(t_server *server, t_client *client)
 
   nick = client->tab_cmd[1];
   if (!nick)
-  {
-    reply(client, ERR_NONICKNAMEGIVEN);
-    return (0);
-  }
+    {
+      reply(client, ERR_NONICKNAMEGIVEN);
+      return (0);
+    }
   already_used = is_already_used(server->root_clients, nick);
   if (client->nick && already_used)
     reply(client, ERR_NICKNAMEINUSE, nick);
@@ -62,11 +62,11 @@ int		set_nickname(t_server *server, t_client *client)
   else if (!client->nick && already_used)
     reply(client, ERR_NICKCOLLISION, nick);
   else
-  {
-    client->nick = strdup(nick);
+    {
+      client->nick = strdup(nick);
 #ifdef DEBUG
-    fprintf(stdout, "--SET NICK-- (fd: %d) (nick: %s)\n", client->fd, nick);
+      fprintf(stdout, "--SET NICK-- (fd: %d) (nick: %s)\n", client->fd, nick);
 #endif
-  }
+    }
   return (0);
 }

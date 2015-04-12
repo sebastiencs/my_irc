@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Fri Apr 10 16:51:56 2015 chapui_s
-** Last update Sun Apr 12 02:34:13 2015 cholet_v
+** Last update Sun Apr 12 03:21:58 2015 cholet_v
 */
 
 #include "client.h"
@@ -48,9 +48,9 @@ static int	check_command(t_client *client, char **tab)
   i = 0;
   while (cmds[i].name &&
 	 (strncmp(tab[0], cmds[i].name, strlen(cmds[i].name)) != 0))
-  {
-    ++i;
-  }
+    {
+      ++i;
+    }
   if (cmds[i].name && cmds[i].need_connected == 1 && client->connect == 0)
     printf("You are not connected\n");
   else if (cmds[i].name)
@@ -66,9 +66,9 @@ static void	clean_buffer(char *buffer)
 
   len = strlen(buffer);
   if (len > 0 && buffer[len - 1] == '\n')
-  {
-    buffer[len - 1] = 0;
-  }
+    {
+      buffer[len - 1] = 0;
+    }
 }
 
 int		read_cmd(t_client *client)

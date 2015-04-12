@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Mon Apr  6 16:58:26 2015 chapui_s
-** Last update Mon Apr  6 17:53:05 2015 chapui_s
+** Last update Sun Apr 12 03:22:45 2015 cholet_v
 */
 
 #include "server.h"
@@ -18,14 +18,14 @@ void			add_client(t_server *server)
 
   size = sizeof(a);
   if ((fd = accept(server->fd, (struct sockaddr*)&a, (socklen_t*)&size)) == -1)
-  {
+    {
 #ifdef DEBUG
-    fprintf(stdout, "%s\n", "##COULD NOT ACCEPT CLIENT##");
+      fprintf(stdout, "%s\n", "##COULD NOT ACCEPT CLIENT##");
 #endif
-    return ;
-  }
+      return ;
+    }
   if (push_client(server->root_clients, fd) == -1)
-  {
-    close(fd);
-  }
+    {
+      close(fd);
+    }
 }

@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Mon Apr  6 04:35:07 2015 chapui_s
-** Last update Sun Apr 12 00:53:55 2015 chapui_s
+** Last update Sun Apr 12 03:36:25 2015 cholet_v
 */
 
 #ifndef COMMON_H_
@@ -51,21 +51,21 @@
 # define RPL_NAMREPLY		(353)
 # define RPL_ENDOFNAMES		(366)
 
-typedef enum		e_action
+typedef enum			e_action
 {
   READ = 0,
   WRITE = 1,
-}			t_action;
+}				t_action;
 
-# define BUFFER_SIZE	(512 + 1)
+# define BUFFER_SIZE		(512 + 1)
 
-int		derror(const char *);
-int		derrorn(const char *);
-int		read512_socket(int fd, char *buffer);
-int		write512_socket(int fd, char *buffer, size_t size);
-void		puts_telnet(const char *s);
-char		**my_str_to_wordtab(char *s);
-void		free_wordtab(char ***wordtab);
-int		count_tab(char **tab);
+int			derror(const char *);
+int			derrorn(const char *);
+int			read512_socket(int fd, char *buffer);
+int			write512_socket(int fd, char *buffer, size_t size);
+void			puts_telnet(const char *s);
+char			**my_str_to_wordtab(char *s);
+void			free_wordtab(char ***wordtab);
+int			count_tab(char **tab);
 
 #endif /* !COMMON_H_ */

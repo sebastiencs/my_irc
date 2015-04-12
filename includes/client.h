@@ -1,3 +1,13 @@
+/*
+** client.h for includes in /home/cholet_v/rendu/my_irc/includes
+**
+** Made by cholet_v
+** Login   <cholet_v@epitech.net>
+**
+** Started on  Sun Apr 12 03:34:32 2015 cholet_v
+** Last update Sun Apr 12 03:34:34 2015 cholet_v
+*/
+
 #ifndef CLIENT_H_
 # define CLIENT_H_
 
@@ -14,45 +24,45 @@
 
 # define MAXCHAN	10
 
-typedef struct	s_client
+typedef struct		s_client
 {
-  char		*ip;
-  int		port;
-  int		fd;
-  int		run;
-  int		connect;
-  char		**tab;
-  t_action	action;
-  char		buffer_out[BUFFER_SIZE];
-  char		*buffer_in;
-  char		*channel[MAXCHAN];
-  int		current_chan;
-}		t_client;
+  char			*ip;
+  int			port;
+  int			fd;
+  int			run;
+  int			connect;
+  char			**tab;
+  t_action		action;
+  char			buffer_out[BUFFER_SIZE];
+  char			*buffer_in;
+  char			*channel[MAXCHAN];
+  int			current_chan;
+}			t_client;
 
-typedef struct	s_cmd
+typedef struct		s_cmd
 {
-  char		*name;
-  int		(*fct)(t_client *client);
-  int		need_connected;
-}		t_cmd;
+  char			*name;
+  int			(*fct)(t_client *client);
+  int			need_connected;
+}			t_cmd;
 
-int		loop_client(t_client *client);
-int		looking_for_server(t_client *client);
-int		loop_client(t_client *client);
-int		try_connection(t_client *client);
-int		switch_server(t_client *client, int tmpfd);
-int		read_cmd(t_client *client);
-int		write_server(t_client *client);
-int		read_server(t_client *client);
-void		clear_line();
+int			loop_client(t_client *client);
+int			looking_for_server(t_client *client);
+int			loop_client(t_client *client);
+int			try_connection(t_client *client);
+int			switch_server(t_client *client, int tmpfd);
+int			read_cmd(t_client *client);
+int			write_server(t_client *client);
+int			read_server(t_client *client);
+void			clear_line();
+int			switch_chan(t_client *client);
+int			send_nick(t_client *client);
+int			send_list(t_client *client);
+int			send_join(t_client *client);
+int			send_users(t_client *client);
+int			send_part(t_client *client);
+int			send_private(t_client *client);
+int			chanli(t_client *client);
+int			channel_message(t_client *client);
 
-int	switch_chan(t_client *client);
-int	send_nick(t_client *client);
-int	send_list(t_client *client);
-int	send_join(t_client *client);
-int	send_users(t_client *client);
-int	send_part(t_client *client);
-int	send_private(t_client *client);
-int	chanli(t_client *client);
-int	channel_message(t_client *client);
 #endif /* !CLIENT_H_ */

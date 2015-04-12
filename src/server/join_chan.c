@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Tue Apr  7 16:18:21 2015 chapui_s
-** Last update Fri Apr 10 03:03:25 2015 chapui_s
+** Last update Sun Apr 12 03:26:08 2015 cholet_v
 */
 
 #include "server.h"
@@ -16,13 +16,13 @@ static void	send_to_chanel(t_client *root, char *from, char *channel)
 
   tmp = root->next;
   while (tmp != root)
-  {
-    if (tmp->channel && is_in_channel(tmp->channel, channel))
     {
-      reply(tmp, 702, from, channel);
+      if (tmp->channel && is_in_channel(tmp->channel, channel))
+	{
+	  reply(tmp, 702, from, channel);
+	}
+      tmp = tmp->next;
     }
-    tmp = tmp->next;
-  }
 }
 
 static void	send_info(t_server *server, t_client *client, char *channel)
@@ -37,25 +37,25 @@ int		join_chan(t_server *server,
   char		*channel;
 
   if (!client->tab_cmd[1])
-  {
-    reply(client, ERR_NEEDMOREPARAMS, client->tab_cmd[0]);
-  }
+    {
+      reply(client, ERR_NEEDMOREPARAMS, client->tab_cmd[0]);
+    }
   else
-  {
-    channel = client->tab_cmd[1];
-    if (channel && channel[0] == '#')
     {
-      channel += 1;
-    }
-    if (!is_in_channel(client->channel, channel))
-    {
-      push_channel(&(client->channel), channel);
-      send_to_chanel(server->root_clients, client->nick, channel);
-      send_info(server, client, channel);
+      channel = client->tab_cmd[1];
+      if (channel && channel[0] == '#')
+	{
+	  channel += 1;
+	}
+      if (!is_in_channel(client->channel, channel))
+	{
+	  push_channel(&(client->channel), channel);
+	  send_to_chanel(server->root_clients, client->nick, channel);
+	  send_info(server, client, channel);
 #ifdef DEBUG
-      fprintf(stdout, "--%s JOIN %s\n", client->nick, channel);
+	  fprintf(stdout, "--%s JOIN %s\n", client->nick, channel);
 #endif
+	}
     }
-  }
   return (0);
 }

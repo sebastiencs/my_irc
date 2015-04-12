@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Tue Apr  7 15:19:21 2015 chapui_s
-** Last update Fri Apr 10 00:25:05 2015 chapui_s
+** Last update Sun Apr 12 03:24:00 2015 cholet_v
 */
 
 #include "server.h"
@@ -15,11 +15,11 @@ static void	free_chan(t_chan *channels)
   t_chan	*tmp;
 
   while (channels)
-  {
-    tmp = channels->next;
-    free(channels);
-    channels = tmp;
-  }
+    {
+      tmp = channels->next;
+      free(channels);
+      channels = tmp;
+    }
 }
 
 static t_chan	*create_chan(char *name)
@@ -27,11 +27,11 @@ static t_chan	*create_chan(char *name)
   t_chan	*new;
 
   if ((new = (t_chan*)malloc(sizeof(t_chan))))
-  {
-    new->name = name;
-    new->nb_users = 1;
-    new->next = (t_chan*)0;
-  }
+    {
+      new->name = name;
+      new->nb_users = 1;
+      new->next = (t_chan*)0;
+    }
   return (new);
 }
 
@@ -41,25 +41,25 @@ static void	push_chan(t_chan **list, char *name)
 
   tmp = *list;
   if (tmp)
-  {
-    while (tmp->next)
     {
-      if (!strcmp(tmp->name, name))
-      {
+      while (tmp->next)
+	{
+	  if (!strcmp(tmp->name, name))
+	    {
+	      tmp->nb_users += 1;
+	      return ;
+	    }
+	  tmp = tmp->next;
+	}
+      if (tmp && !strcmp(tmp->name, name))
 	tmp->nb_users += 1;
-	return ;
-      }
-      tmp = tmp->next;
+      else
+	tmp->next = create_chan(name);
     }
-    if (tmp && !strcmp(tmp->name, name))
-      tmp->nb_users += 1;
-    else
-      tmp->next = create_chan(name);
-  }
   else
-  {
-    *list = create_chan(name);
-  }
+    {
+      *list = create_chan(name);
+    }
 }
 
 static t_chan		*get_list(t_client *root)
@@ -72,15 +72,15 @@ static t_chan		*get_list(t_client *root)
   channels = (t_chan*)0;
   client = root->next;
   while (client != root)
-  {
-    list_channel = client->channel;
-    while (list_channel)
     {
-      push_chan(&channels, list_channel->name);
-      list_channel = list_channel->next;
+      list_channel = client->channel;
+      while (list_channel)
+	{
+	  push_chan(&channels, list_channel->name);
+	  list_channel = list_channel->next;
+	}
+      client = client->next;
     }
-    client = client->next;
-  }
   return (channels);
 }
 
@@ -93,14 +93,14 @@ int		list_chan(t_server *server, t_client *client)
   save = channels;
   reply(client, RPL_LISTSTART);
   while (channels)
-  {
-    if ((client->tab_cmd[1] && strstr(channels->name, client->tab_cmd[1]))
-	|| !client->tab_cmd[1])
     {
-      reply(client, RPL_LIST, channels->name, channels->nb_users);
+      if ((client->tab_cmd[1] && strstr(channels->name, client->tab_cmd[1]))
+	|| !client->tab_cmd[1])
+	{
+	  reply(client, RPL_LIST, channels->name, channels->nb_users);
+	}
+      channels = channels->next;
     }
-    channels = channels->next;
-  }
   reply(client, RPL_LISTEND);
   free_chan(save);
   return (0);

@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Mon Apr  6 18:18:11 2015 chapui_s
-** Last update Fri Apr 10 02:17:15 2015 chapui_s
+** Last update Sun Apr 12 03:32:08 2015 cholet_v
 */
 
 #include "common.h"
@@ -17,20 +17,20 @@ int			write512_socket(int fd, char *buffer, size_t size)
 
   total = 0;
   if (size > 512)
-  {
-    size = 512;
+    {
+      size = 512;
 #ifdef DEBUG
-    fprintf(stdout, "%s\n", "##TRY TO WRITE MORE THAN 512 BYTES##");
+      fprintf(stdout, "%s\n", "##TRY TO WRITE MORE THAN 512 BYTES##");
 #endif
-  }
+    }
   while (total < size && (current = write(fd, buffer, size)) > 0)
-  {
-    buffer += (size_t)current;
-    total += current;
-  }
+    {
+      buffer += (size_t)current;
+      total += current;
+    }
   if (current == -1)
-  {
-    derror("write:");
-  }
+    {
+      derror("write:");
+    }
   return ((current == -1) ? (-1) : (0));
 }

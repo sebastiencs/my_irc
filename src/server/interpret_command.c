@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Mon Apr  6 21:45:01 2015 chapui_s
-** Last update Sat Apr 11 22:03:01 2015 chapui_s
+** Last update Sun Apr 12 03:23:11 2015 cholet_v
 */
 
 #include "server.h"
@@ -27,9 +27,9 @@ static void	manage_errors(t_server *server, t_client *client)
 {
   reply(client, ERR_UNKNOWNCOMMAND, client->tab_cmd[0]);
   if (++(client->nb_wrong_cmd) >= LIMIT_WRONG)
-  {
-    pop_client(server->root_clients, client);
-  }
+    {
+      pop_client(server->root_clients, client);
+    }
 }
 
 int		interpret_command(t_server *server, t_client *client)
@@ -42,21 +42,21 @@ int		interpret_command(t_server *server, t_client *client)
   while (cmds[i].name && strncmp(client->buffer_in,
 				 cmds[i].name,
 				 strlen(cmds[i].name)))
-  {
-    i += 1;
-  }
+    {
+      i += 1;
+    }
   if (cmds[i].name && cmds[i].need_registered && !client->registered)
-  {
-    reply(client, ERR_NOTREGISTERED);
-  }
+    {
+      reply(client, ERR_NOTREGISTERED);
+    }
   else if (cmds[i].name)
-  {
-    client->nb_wrong_cmd = 0;
-    ret = cmds[i].fct(server, client);
-  }
+    {
+      client->nb_wrong_cmd = 0;
+      ret = cmds[i].fct(server, client);
+    }
   else
-  {
-    manage_errors(server, client);
-  }
+    {
+      manage_errors(server, client);
+    }
   return (ret);
 }
