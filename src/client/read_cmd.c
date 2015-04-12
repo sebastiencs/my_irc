@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Fri Apr 10 16:51:56 2015 chapui_s
-** Last update Sun Apr 12 00:58:47 2015 cholet_v
+** Last update Sun Apr 12 02:34:13 2015 cholet_v
 */
 
 #include "client.h"
@@ -20,6 +20,7 @@ t_cmd		cmds[] =
   { "/msg", send_private, 1 },
   { "/server", try_connection, 0 },
   { "/chanli", chanli, 1},
+  { "/switch", switch_chan, 1 },
   { (char*)0, (void*)0, 0 }
 };
 
@@ -28,12 +29,13 @@ int		chanli(t_client *client)
   int		i;
 
   i = 0;
-  printf("Current-- %d\nTotal-- %d\n",
-	 client->current_chan, count_tab(client->channel));
+  printf("Current-- %s - %d\nTotal-- %d\n\n-------------\n",
+	 client->channel[client->current_chan],
+	 client->current_chan + 1, count_tab(client->channel));
   while (i < 10)
     {
       if (client->channel[i] != NULL)
-	printf("%s\n", client->channel[i]);
+	printf("%s --- %d\n", client->channel[i], (i + 1));
       ++i;
     }
   return (0);

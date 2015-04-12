@@ -46,6 +46,7 @@ int		write_server(t_client *client);
 int		read_server(t_client *client);
 void		clear_line();
 
+int	switch_chan(t_client *client);
 int	send_nick(t_client *client);
 int	send_list(t_client *client);
 int	send_join(t_client *client);

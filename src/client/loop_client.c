@@ -5,7 +5,7 @@
 ** Login   <cholet_v@epitech.net>
 **
 ** Started on  Fri Apr 10 14:11:54 2015 cholet_v
-** Last update Sun Apr 12 01:52:32 2015 chapui_s
+** Last update Sun Apr 12 02:49:26 2015 cholet_v
 */
 
 #include "client.h"
@@ -51,8 +51,11 @@ static int	post_select(t_client *client,
   return (0);
 }
 
-static void	prompt()
+static void	prompt(t_client *client)
 {
+  if (client->channel[client->current_chan])
+    write(1, client->channel[client->current_chan],
+	  strlen(client->channel[client->current_chan]));
   write(1, "-> ", 3);
 }
 
@@ -66,7 +69,7 @@ int		loop_client(t_client *client)
   while (client->run == 1)
   {
     if (client->action == READ)
-      prompt();
+      prompt(client);
     init_select(client, &rfds, &wfds, &efds);
     if (client->run)
     {
