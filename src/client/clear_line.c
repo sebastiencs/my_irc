@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Sun Apr 12 05:20:25 2015 chapui_s
-** Last update Sun Apr 12 06:15:46 2015 chapui_s
+** Last update Sun Apr 12 10:26:58 2015 chapui_s
 */
 
 #include "client.h"
@@ -38,6 +38,7 @@ void			clean_telnet(char *s)
 void			clear_and_print(char *s)
 {
   clear_line();
+  clean_telnet(s);
   fprintf(stdout, "%s\n", s);
 }
 

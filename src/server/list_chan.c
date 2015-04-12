@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Tue Apr  7 15:19:21 2015 chapui_s
-** Last update Sun Apr 12 03:24:00 2015 cholet_v
+** Last update Sun Apr 12 10:45:43 2015 chapui_s
 */
 
 #include "server.h"
@@ -67,7 +67,6 @@ static t_chan		*get_list(t_client *root)
   t_list_channel	*list_channel;
   t_chan		*channels;
   t_client		*client;
-
 
   channels = (t_chan*)0;
   client = root->next;

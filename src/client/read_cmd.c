@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Fri Apr 10 16:51:56 2015 chapui_s
-** Last update Sun Apr 12 03:21:58 2015 cholet_v
+** Last update Sun Apr 12 08:04:17 2015 chapui_s
 */
 
 #include "client.h"
@@ -21,6 +21,8 @@ t_cmd		cmds[] =
   { "/server", try_connection, 0 },
   { "/chanli", chanli, 1},
   { "/switch", switch_chan, 1 },
+  { "/send_file", send_file, 1 },
+  { "/accept", accept_file, 1 },
   { (char*)0, (void*)0, 0 }
 };
 

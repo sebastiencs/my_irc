@@ -5,7 +5,7 @@
 ** Login   <cholet_v@epitech.net>
 **
 ** Started on  Sun Apr 12 03:34:32 2015 cholet_v
-** Last update Sun Apr 12 05:45:44 2015 chapui_s
+** Last update Sun Apr 12 10:48:55 2015 chapui_s
 */
 
 #ifndef CLIENT_H_
@@ -23,6 +23,7 @@
 # include "common.h"
 
 # define MAXCHAN	10
+# define FILE_RECEIVE	("FILE_RECEIVE")
 
 typedef struct		s_client
 {
@@ -37,6 +38,12 @@ typedef struct		s_client
   char			*buffer_in;
   char			*channel[MAXCHAN];
   int			current_chan;
+  void			*file_to_send;
+  char			*dest;
+  size_t		current;
+  size_t		total;
+  char			*sender;
+  int			transfer;
 }			t_client;
 
 typedef struct		s_cmd
@@ -67,5 +74,10 @@ int			channel_message(t_client *client);
 void			clear_and_print(char *s);
 void			clear_and_printf(char *fmt, ...);
 void			clean_telnet(char *s);
+int			send_file(t_client *client);
+int			accept_file(t_client *client);
+void			clear_transfer(t_client *client);
+void			receive_file(t_client *client, char *buffer);
+void			put_file_in_buffer(t_client *client);
 
 #endif /* !CLIENT_H_ */

@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Tue Apr  7 01:41:12 2015 chapui_s
-** Last update Sun Apr 12 03:30:15 2015 cholet_v
+** Last update Sun Apr 12 08:37:02 2015 chapui_s
 */
 
 #include "server.h"
@@ -66,6 +66,10 @@ t_reply		tab_reply[] =
   { 701, ":%s PONG %s :%s\r\n" },
   { 702, ":%s JOIN #%s\r\n" },
   { 703, ":%s PART %s\r\n" },
+  { 704, "RREQUEST NO :%s\r\n" },
+  { 705, "ASK_FILE %s %s\r\n" },
+  { 706, "RREQUEST OK :%s\r\n" },
+  { 707, "SEND %-20s %s\r\n" },
   { 323, "323 :End of /LIST\r\n" },
   { 0, (char*)0 }
 };

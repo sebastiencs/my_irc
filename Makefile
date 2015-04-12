@@ -5,7 +5,7 @@
 ## Login   <chapui_s@epitech.eu>
 ## 
 ## Started on  Sun Apr 12 05:20:57 2015 chapui_s
-## Last update Sun Apr 12 06:22:37 2015 chapui_s
+## Last update Sun Apr 12 10:45:02 2015 chapui_s
 ##
 
 NAME		= myirc
@@ -32,7 +32,10 @@ SRC_SERVER	= $(DIR_SERVER)/server.c		\
 		  $(DIR_SERVER)/join_chan.c		\
 		  $(DIR_SERVER)/ping_pong.c		\
 		  $(DIR_SERVER)/names.c			\
+		  $(DIR_SERVER)/request.c		\
+		  $(DIR_SERVER)/send_file.c		\
 		  $(DIR_SERVER)/part_chan.c		\
+		  $(DIR_SERVER)/find_client.c		\
 		  $(DIR_SERVER)/clean_telnet.c		\
 		  $(DIR_SERVER)/free_client.c		\
 		  $(DIR_SERVER)/priv_msg.c		\
@@ -52,8 +55,11 @@ SRC_CLIENT	= $(DIR_CLIENT)/client.c		\
 		  $(DIR_CLIENT)/clear_line.c		\
 		  $(DIR_CLIENT)/write_server.c		\
 		  $(DIR_CLIENT)/send_part.c		\
+		  $(DIR_CLIENT)/manage_file.c		\
 		  $(DIR_CLIENT)/user_function.c		\
 		  $(DIR_CLIENT)/loop_client.c		\
+		  $(DIR_CLIENT)/accept_file.c		\
+		  $(DIR_CLIENT)/send_file.c		\
 		  $(DIR_CLIENT)/server_function.c       \
 		  $(DIR_CLIENT)/chan_message.c		\
 		  $(DIR_CLIENT)/switch_chan.c

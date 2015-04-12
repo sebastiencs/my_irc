@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Mon Apr  6 21:45:01 2015 chapui_s
-** Last update Sun Apr 12 03:23:11 2015 cholet_v
+** Last update Sun Apr 12 08:25:58 2015 chapui_s
 */
 
 #include "server.h"
@@ -20,6 +20,9 @@ t_cmd		cmds[] =
   { "PRIVMSG", priv_msg, 1 },
   { "PING", ping_pong, 1 },
   { "NAMES", names, 1},
+  { "REQUEST", request, 1},
+  { "ACCEPT_FILE", accept_file, 1},
+  { "SEND", send_file, 1 },
   { (char*)0, (void*)0, 0 }
 };
 

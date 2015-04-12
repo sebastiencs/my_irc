@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Mon Apr  6 04:36:38 2015 chapui_s
-** Last update Sun Apr 12 03:35:48 2015 cholet_v
+** Last update Sun Apr 12 10:44:49 2015 chapui_s
 */
 
 #ifndef SERVER_H_
@@ -60,6 +60,7 @@ typedef struct		s_server
   int			alive;
   char			*local_ip;
   t_client		*root_clients;
+  int			transfer;
 }			t_server;
 
 typedef struct		s_cmd
@@ -111,5 +112,12 @@ int			push_channel(t_list_channel **list, char *name);
 int			is_in_channel(t_list_channel *list, char *name);
 t_list_channel		*get_channel_by_name(t_list_channel *list, char *name);
 int			names(t_server *server, t_client *client);
+int			accept_file(t_server *server, t_client *client);
+int			request(t_server *server, t_client *client);
+int			send_file(t_server *server, t_client *client);
+t_client		*find_dest(t_client *root, char *name);
+t_client		*find_client(t_client *root,
+				     fd_set *rfds,
+				     fd_set *wfds);
 
 #endif /* !SERVER_H_ */

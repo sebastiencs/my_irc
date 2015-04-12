@@ -5,28 +5,10 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Mon Apr  6 15:43:27 2015 chapui_s
-** Last update Sun Apr 12 03:24:47 2015 cholet_v
+** Last update Sun Apr 12 10:44:25 2015 chapui_s
 */
 
 #include "server.h"
-
-t_client		*find_client(t_client *root,
-				     fd_set *rfds,
-				     fd_set *wfds)
-{
-  t_client		*tmp;
-  int			fd;
-
-  tmp = root->next;
-  while (tmp != root)
-    {
-      fd = tmp->fd;
-      if (FD_ISSET(fd, wfds) || FD_ISSET(fd, rfds))
-	return (tmp);
-      tmp = tmp->next;
-    }
-  return ((t_client*)0);
-}
 
 int			read_client(t_server *server, t_client *client)
 {
@@ -52,16 +34,25 @@ int			read_client(t_server *server, t_client *client)
   return (0);
 }
 
-int			write_client(t_server *server __attribute__ ((unused)),
+int			write_client(t_server *server,
 				     t_client *client)
 {
-  get_buffer(&(client->list_buffer), client->buffer_out);
-  write512_socket(client->fd, client->buffer_out, strlen(client->buffer_out));
-  memset(client->buffer_out, 0, BUFFER_SIZE);
-  if (!client->list_buffer)
+  if (!server->transfer)
+  {
+    get_buffer(&(client->list_buffer), client->buffer_out);
+    write512_socket(client->fd, client->buffer_out,
+		    strlen(client->buffer_out));
+    memset(client->buffer_out, 0, BUFFER_SIZE);
+    if (!client->list_buffer)
     {
       client->action = READ;
     }
+  }
+  else
+  {
+    write(client->fd, client->buffer_out, 512);
+    server->transfer = 0;
+  }
   return (0);
 }
 

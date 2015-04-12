@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Tue Apr  7 17:56:14 2015 chapui_s
-** Last update Sun Apr 12 03:27:43 2015 cholet_v
+** Last update Sun Apr 12 10:42:47 2015 chapui_s
 */
 
 #include "server.h"
@@ -20,23 +20,23 @@ static int	send_to_chanel(t_client *root, char *channel,
   move = 0;
   client = root->next;
   if (channel[0] == '#' && ++move)
-    {
-      channel += 1;
-    }
+  {
+    channel += 1;
+  }
   msg += 1;
   found = -1;
   while (client != root)
+  {
+    if (client->channel && is_in_channel(client->channel, channel))
     {
-      if (client->channel && is_in_channel(client->channel, channel))
-	{
-	  if (client->nick && strcmp(client->nick, from))
-	    {
-	      reply(client, 700, from, (move) ? (channel - 1) : (channel), msg);
-	    }
-	  found = 0;
-	}
-      client = client->next;
+      if (client->nick && strcmp(client->nick, from))
+      {
+	reply(client, 700, from, (move) ? (channel - 1) : (channel), msg);
+      }
+      found = 0;
     }
+    client = client->next;
+  }
   return (found);
 }
 
