@@ -5,7 +5,7 @@
 ** Login   <cholet_v@epitech.net>
 **
 ** Started on  Sun Apr 12 03:34:32 2015 cholet_v
-** Last update Sun Apr 12 10:48:55 2015 chapui_s
+** Last update Sun Apr 12 18:37:15 2015 cholet_v
 */
 
 #ifndef CLIENT_H_
@@ -22,7 +22,7 @@
 # include <unistd.h>
 # include "common.h"
 
-# define MAXCHAN	10
+# define MAXCHAN	5
 # define FILE_RECEIVE	("FILE_RECEIVE")
 
 typedef struct		s_client
@@ -44,6 +44,8 @@ typedef struct		s_client
   size_t		total;
   char			*sender;
   int			transfer;
+  int			quitting;
+  int			nick;
 }			t_client;
 
 typedef struct		s_cmd
@@ -51,6 +53,7 @@ typedef struct		s_cmd
   char			*name;
   int			(*fct)(t_client *client);
   int			need_connected;
+  int			need_nick;
 }			t_cmd;
 
 int			loop_client(t_client *client);
@@ -79,5 +82,7 @@ int			accept_file(t_client *client);
 void			clear_transfer(t_client *client);
 void			receive_file(t_client *client, char *buffer);
 void			put_file_in_buffer(t_client *client);
+int			quit(t_client *client);
+int			quit_loop(t_client *client);
 
 #endif /* !CLIENT_H_ */
