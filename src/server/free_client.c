@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Tue Apr  7 03:46:17 2015 chapui_s
-** Last update Sun Apr 12 03:22:56 2015 cholet_v
+** Last update Thu Apr 16 00:03:52 2015 chapui_s
 */
 
 #include "server.h"
@@ -15,12 +15,12 @@ void			free_channel(t_list_channel *list)
   t_list_channel	*tmp;
 
   while (list)
-    {
-      tmp = list->next;
-      free(list->name);
-      free(list);
-      list = tmp;
-    }
+  {
+    tmp = list->next;
+    free(list->name);
+    free(list);
+    list = tmp;
+  }
 }
 
 void			free_client(t_client *client)

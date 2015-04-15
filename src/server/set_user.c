@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Tue Apr  7 04:39:01 2015 chapui_s
-** Last update Sun Apr 12 03:30:41 2015 cholet_v
+** Last update Thu Apr 16 00:12:32 2015 chapui_s
 */
 
 #include "server.h"
@@ -26,22 +26,22 @@ int		set_user(t_server *server __attribute__ ((unused)),
   char		*real_name;
 
   if (count_tab(client->tab_cmd) < 5)
-    {
-      reply(client, ERR_NEEDMOREPARAMS, client->tab_cmd[0]);
-    }
+  {
+    reply(client, ERR_NEEDMOREPARAMS, client->tab_cmd[0]);
+  }
   else if (client->registered)
-    {
-      reply(client, ERR_ALREADYREGISTRED);
-    }
+  {
+    reply(client, ERR_ALREADYREGISTRED);
+  }
   else
+  {
+    client->user = strdup(client->tab_cmd[1]);
+    real_name = strrchr(client->buffer_in, ':');
+    if (real_name)
     {
-      client->user = strdup(client->tab_cmd[1]);
-      real_name = strrchr(client->buffer_in, ':');
-      if (real_name)
-	{
-	  client->real_name = strdup(real_name + 1);
-	}
-      set_registered(client);
+      client->real_name = strdup(real_name + 1);
     }
+    set_registered(client);
+  }
   return (0);
 }

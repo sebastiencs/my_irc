@@ -5,12 +5,12 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Fri Apr 10 16:51:56 2015 chapui_s
-** Last update Sun Apr 12 18:36:55 2015 cholet_v
+** Last update Thu Apr 16 00:35:03 2015 chapui_s
 */
 
 #include "client.h"
 
-t_cmd		cmds[] =
+t_cmd		g_cmds[] =
 {
   { "/nick", send_nick, 1, 0 },
   { "/list", send_list, 1, 1 },
@@ -51,17 +51,17 @@ static int	check_command(t_client *client, char **tab)
   i = 0;
   if (client->quitting == 1)
     quit(client);
-  while (cmds[i].name &&
-	 (strncmp(tab[0], cmds[i].name, strlen(cmds[i].name)) != 0))
+  while (g_cmds[i].name &&
+	 (strncmp(tab[0], g_cmds[i].name, strlen(g_cmds[i].name)) != 0))
     {
       ++i;
     }
-  if (cmds[i].name && cmds[i].need_connected == 1 && client->connect == 0)
+  if (g_cmds[i].name && g_cmds[i].need_connected == 1 && client->connect == 0)
     printf("You are not connected\n");
-  if (cmds[i].name && cmds[i].need_nick == 1 && client->nick == 0)
+  if (g_cmds[i].name && g_cmds[i].need_nick == 1 && client->nick == 0)
     printf("You are not log\n");
-  else if (cmds[i].name)
-    cmds[i].fct(client);
+  else if (g_cmds[i].name)
+    g_cmds[i].fct(client);
   else
     channel_message(client);
   return (0);
@@ -85,7 +85,11 @@ int		read_cmd(t_client *client)
   memset(buffer, 0, BUFFER_SIZE);
   fgets(buffer, 512, stdin);
   clean_buffer(buffer);
-  if (strlen(buffer) > 0 && (client->tab = my_str_to_wordtab(buffer)))
+  if (!strlen(buffer))
+  {
+    return (-1);
+  }
+  else if (strlen(buffer) > 0 && (client->tab = my_str_to_wordtab(buffer)))
     {
       client->buffer_in = buffer;
       check_command(client, client->tab);

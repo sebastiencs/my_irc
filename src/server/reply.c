@@ -5,12 +5,12 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Tue Apr  7 01:41:12 2015 chapui_s
-** Last update Sun Apr 12 08:37:02 2015 chapui_s
+** Last update Thu Apr 16 00:32:55 2015 chapui_s
 */
 
 #include "server.h"
 
-t_reply		tab_reply[] =
+t_reply		g_tab_reply[] =
 {
   { 001, "001 %s :%s\r\n" },
   { 401, "401 %s :No such nick/channel\r\n" },
@@ -80,7 +80,7 @@ void		make_reply(t_client *client, int i, va_list *ap)
 
   buffer = client->buffer_out;
   memset(buffer, 0, BUFFER_SIZE);
-  vsnprintf(buffer, 512, tab_reply[i].fmt, *ap);
+  vsnprintf(buffer, 512, g_tab_reply[i].fmt, *ap);
 #ifdef DEBUG
   fprintf(stdout, "--SEND: '%s'\n", buffer);
 #endif
@@ -94,21 +94,21 @@ int		reply(t_client *client, int num, ...)
   size_t	i;
 
   i = 0;
-  while (tab_reply[i].num && tab_reply[i].num != num)
-    {
-      i += 1;
-    }
-  if (tab_reply[i].num)
-    {
-      va_start(ap, num);
-      make_reply(client, i, &ap);
-      va_end(ap);
-    }
+  while (g_tab_reply[i].num && g_tab_reply[i].num != num)
+  {
+    i += 1;
+  }
+  if (g_tab_reply[i].num)
+  {
+    va_start(ap, num);
+    make_reply(client, i, &ap);
+    va_end(ap);
+  }
 #ifdef DEBUG
   else
-    {
-      fprintf(stdout, "##UNKNOWN REPLY CODE## (%d)\n", num);
-    }
+  {
+    fprintf(stdout, "##UNKNOWN REPLY CODE## (%d)\n", num);
+  }
 #endif
   return (0);
 }

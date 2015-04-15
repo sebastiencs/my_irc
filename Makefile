@@ -5,7 +5,7 @@
 ## Login   <chapui_s@epitech.eu>
 ##
 ## Started on  Sun Apr 12 05:20:57 2015 chapui_s
-## Last update Sun Apr 12 21:15:00 2015 chapui_s
+## Last update Wed Apr 15 23:23:22 2015 chapui_s
 ##
 
 NAME		= myirc
@@ -38,6 +38,7 @@ SRC_SERVER	= $(DIR_SERVER)/server.c		\
 		  $(DIR_SERVER)/find_client.c		\
 		  $(DIR_SERVER)/clean_telnet.c		\
 		  $(DIR_SERVER)/free_client.c		\
+		  $(DIR_SERVER)/quit_client.c		\
 		  $(DIR_SERVER)/priv_msg.c		\
 		  $(DIR_SERVER)/list_channel.c		\
 		  $(DIR_SERVER)/set_nickname.c		\
@@ -85,7 +86,7 @@ CC		= gcc
 
 RM		= rm -f
 
-override CFLAGS	+= -Wall -Wextra -I $(INCLUDES) -ggdb -D DEBUG
+override CFLAGS	+= -Wall -Wextra -I $(INCLUDES)
 
 all:		$(server) $(client)
 

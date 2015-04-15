@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Mon Apr  6 04:36:38 2015 chapui_s
-** Last update Sun Apr 12 10:44:49 2015 chapui_s
+** Last update Wed Apr 15 23:23:40 2015 chapui_s
 */
 
 #ifndef SERVER_H_
@@ -119,5 +119,6 @@ t_client		*find_dest(t_client *root, char *name);
 t_client		*find_client(t_client *root,
 				     fd_set *rfds,
 				     fd_set *wfds);
+int			quit_client(t_server *server, t_client *client);
 
 #endif /* !SERVER_H_ */

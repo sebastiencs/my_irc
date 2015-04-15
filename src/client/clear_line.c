@@ -5,18 +5,18 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Sun Apr 12 05:20:25 2015 chapui_s
-** Last update Sun Apr 12 10:26:58 2015 chapui_s
+** Last update Wed Apr 15 23:46:54 2015 chapui_s
 */
 
 #include "client.h"
 
+static const char	g_dl[] = { 27, 91, 77, 0 };
+static const char	g_cr[] = { 13, 0 };
+
 void			clear_line()
 {
-  static const char	dl[] = { 27, 91, 77, 0 };
-  static const char	cr[] = { 13, 0 };
-
-  write(1, dl, strlen(dl));
-  write(1, cr, strlen(cr));
+  write(1, g_dl, strlen(g_dl));
+  write(1, g_cr, strlen(g_cr));
 }
 
 void			clean_telnet(char *s)

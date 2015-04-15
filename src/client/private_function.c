@@ -5,7 +5,7 @@
 ** Login   <cholet_v@epitech.net>
 **
 ** Started on  Fri Apr 10 01:26:19 2015 cholet_v
-** Last update Sun Apr 12 00:44:13 2015 chapui_s
+** Last update Thu Apr 16 00:21:37 2015 chapui_s
 */
 
 #include "client.h"
@@ -31,6 +31,7 @@ int	recup_msg(char *str)
 int	send_private(t_client *client)
 {
   int	pos;
+
   if (count_tab(client->tab) < 3)
     return (derrorn("/msg usage: /msg _nickname_ _message_"));
   pos = recup_msg(client->buffer_in);

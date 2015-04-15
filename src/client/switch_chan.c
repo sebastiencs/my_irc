@@ -5,7 +5,7 @@
 ** Login   <cholet_v@epitech.net>
 **
 ** Started on  Sun Apr 12 02:20:02 2015 cholet_v
-** Last update Sun Apr 12 18:58:01 2015 cholet_v
+** Last update Thu Apr 16 00:12:33 2015 Victor Cholet
 */
 
 #include "client.h"
@@ -16,11 +16,11 @@ static int	is_number(char *s)
 
   i = 0;
   while (s[i])
-  {
-    if (s[i] < '0' || s[i] > '9')
-      return (0);
-    i += 1;
-  }
+    {
+      if (s[i] < '0' || s[i] > '9')
+	return (0);
+      i += 1;
+    }
   return (1);
 }
 

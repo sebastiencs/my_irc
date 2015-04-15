@@ -5,7 +5,7 @@
 ** Login   <cholet_v@epitech.net>
 **
 ** Started on  Fri Apr 10 14:11:54 2015 cholet_v
-** Last update Sun Apr 12 18:25:13 2015 cholet_v
+** Last update Thu Apr 16 00:04:53 2015 Victor Cholet
 */
 
 #include "client.h"
@@ -54,10 +54,10 @@ static void	prompt(t_client *client)
 
   channel = client->channel[client->current_chan];
   if (channel && client->quitting != 1)
-  {
-    my_putstr("#");
-    my_putstr(channel);
-  }
+    {
+      my_putstr("#");
+      my_putstr(channel);
+    }
   write(1, "-> ", 3);
 }
 

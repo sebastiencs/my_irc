@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Fri Apr 10 17:25:07 2015 chapui_s
-** Last update Sun Apr 12 10:48:02 2015 chapui_s
+** Last update Thu Apr 16 00:06:10 2015 Victor Cholet
 */
 
 #include "client.h"
@@ -57,9 +57,9 @@ static void		manage_code(t_client *client __attribute__ ((unused)),
 	  clear_and_print(msg);
 	}
       else
-      {
-	clear_line();
-      }
+	{
+	  clear_line();
+	}
     }
   else
     {
@@ -71,25 +71,25 @@ void			manage_other(t_client *client,
 				     char *buffer)
 {
   if (!strncmp(buffer, "SEND", strlen("SEND")))
-  {
-    receive_file(client, buffer);
-  }
+    {
+      receive_file(client, buffer);
+    }
   else if (!strncmp(buffer, "RREQUEST", strlen("RREQUEST")))
-  {
-    if (strstr(buffer, "OK"))
     {
-      clear_line();
-      put_file_in_buffer(client);
+      if (strstr(buffer, "OK"))
+	{
+	  clear_line();
+	  put_file_in_buffer(client);
+	}
+      else
+	{
+	  clear_transfer(client);
+	}
     }
-    else
-    {
-      clear_transfer(client);
-    }
-  }
   else
-  {
-    clear_and_print(buffer);
-  }
+    {
+      clear_and_print(buffer);
+    }
 }
 
 int			read_server(t_client *client)

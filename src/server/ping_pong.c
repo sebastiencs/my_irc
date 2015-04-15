@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Tue Apr  7 19:33:36 2015 chapui_s
-** Last update Sun Apr 12 03:25:03 2015 cholet_v
+** Last update Thu Apr 16 00:09:41 2015 chapui_s
 */
 
 #include "server.h"
@@ -17,12 +17,12 @@ int		ping_pong(t_server *server __attribute__ ((unused)),
 
   orig = client->tab_cmd[1];
   if (orig)
-    {
-      reply(client, 701, orig, orig, orig);
-    }
+  {
+    reply(client, 701, orig, orig, orig);
+  }
   else
-    {
-      reply(client, ERR_NOORIGIN);
-    }
+  {
+    reply(client, ERR_NOORIGIN);
+  }
   return (0);
 }

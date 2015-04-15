@@ -1,10 +1,11 @@
 /*
-** join_function.c for client in /home/cholet_v/rendu/my_irc/src/client
-** Made by cholet_v
-** Login   <cholet_v@epitech.net>
+** join_function.c for epitech in /home/chapuis_s/rendu/
 **
-** Started on  Fri Apr 10 01:23:37 2015 cholet_v
-** Last update Sun Apr 12 18:07:05 2015 cholet_v
+** Made by chapui_s
+** Login   <chapui_s@epitech.eu>
+**
+** Started on  Thu Apr 16 00:29:28 2015 chapui_s
+** Last update Thu Apr 16 00:29:28 2015 chapui_s
 */
 
 #include "client.h"

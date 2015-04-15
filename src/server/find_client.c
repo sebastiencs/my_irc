@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.eu>
 **
 ** Started on  Sun Apr 12 10:44:29 2015 chapui_s
-** Last update Sun Apr 12 10:44:41 2015 chapui_s
+** Last update Thu Apr 16 00:01:41 2015 chapui_s
 */
 
 #include "server.h"
@@ -19,11 +19,11 @@ t_client		*find_client(t_client *root,
 
   tmp = root->next;
   while (tmp != root)
-    {
-      fd = tmp->fd;
-      if (FD_ISSET(fd, wfds) || FD_ISSET(fd, rfds))
-	return (tmp);
-      tmp = tmp->next;
-    }
+  {
+    fd = tmp->fd;
+    if (FD_ISSET(fd, wfds) || FD_ISSET(fd, rfds))
+      return (tmp);
+    tmp = tmp->next;
+  }
   return ((t_client*)0);
 }
